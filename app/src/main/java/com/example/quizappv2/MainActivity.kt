@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
     {
         val randomInteger = (1..4).random()
         println(randomInteger)
-        return 4
+        return randomInteger
     }
 
     private fun defineButtons(){
