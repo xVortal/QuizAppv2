@@ -105,6 +105,7 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
     fun cleanDatabase(){
         val db = this.writableDatabase
         db.execSQL("DELETE FROM " + TABLE_NAME)
+        db.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE name = '"+ TABLE_NAME +"'")
 
     }
 }

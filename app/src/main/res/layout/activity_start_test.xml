@@ -35,13 +35,14 @@
 
     <Button
         android:id="@+id/StartTestBtn"
-        android:layout_width="202dp"
-        android:layout_height="134dp"
+        android:layout_width="235dp"
+        android:layout_height="85dp"
         android:layout_marginTop="50dp"
+        android:background="#79A8D3"
         android:text="Start Test"
-        tools:layout_editor_absoluteX="10dp"
-        tools:layout_editor_absoluteY="271dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StartTestTextView" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
