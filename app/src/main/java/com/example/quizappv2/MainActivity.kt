@@ -1,7 +1,9 @@
 package com.example.quizappv2
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.AbsListView
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -10,6 +12,13 @@ class MainActivity : AppCompatActivity() {
     internal var lstQuestion:List<Question> = ArrayList<Question>()
 
     var correct = ""
+
+    //private val answerABtn = findViewById<Button>(R.id.AnswerABtn)
+    //private val answerBBtn = findViewById<Button>(R.id.AnswerBBtn)
+    //private val answerCBtn = findViewById<Button>(R.id.AnswerCBtn)
+    //private val answerDBtn = findViewById<Button>(R.id.AnswerDBtn)
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,8 +74,55 @@ class MainActivity : AppCompatActivity() {
         val answerABtn = findViewById<Button>(R.id.AnswerABtn)
         answerABtn.setOnClickListener{
             if(answerABtn.getText().equals(correct)){
-
+                answerABtn.setBackgroundColor(Color.GREEN)
+            } else {
+                answerABtn.setBackgroundColor(Color.RED)
+                showRightAnswer();
             }
+        }
+        val answerBBtn = findViewById<Button>(R.id.AnswerBBtn)
+        answerBBtn.setOnClickListener{
+            if(answerBBtn.getText().equals(correct)){
+                answerBBtn.setBackgroundColor(Color.GREEN)
+            } else {
+                answerBBtn.setBackgroundColor(Color.RED)
+                showRightAnswer();
+            }
+        }
+        val answerCBtn = findViewById<Button>(R.id.AnswerCBtn)
+        answerCBtn.setOnClickListener{
+            if(answerCBtn.getText().equals(correct)){
+                answerCBtn.setBackgroundColor(Color.GREEN)
+            } else {
+                answerCBtn.setBackgroundColor(Color.RED)
+                showRightAnswer();
+            }
+        }
+        val answerDBtn = findViewById<Button>(R.id.AnswerDBtn)
+        answerDBtn.setOnClickListener{
+            if(answerDBtn.getText().equals(correct)){
+                answerDBtn.setBackgroundColor(Color.GREEN)
+            }
+            if(!answerDBtn.getText().equals(correct)){
+                answerDBtn.setBackgroundColor(Color.RED)
+                showRightAnswer();
+            }
+        }
+
+    }
+
+    private fun showRightAnswer(){
+        if(AnswerABtn.getText().equals(correct)){
+            findViewById<Button>(R.id.AnswerABtn).setBackgroundColor(Color.GREEN)
+        }
+        if(AnswerBBtn.getText().equals(correct)){
+            findViewById<Button>(R.id.AnswerBBtn).setBackgroundColor(Color.GREEN)
+        }
+        if(AnswerCBtn.getText().equals(correct)){
+            findViewById<Button>(R.id.AnswerCBtn).setBackgroundColor(Color.GREEN)
+        }
+        if(AnswerDBtn.getText().equals(correct)){
+            findViewById<Button>(R.id.AnswerDBtn).setBackgroundColor(Color.GREEN)
         }
     }
 
