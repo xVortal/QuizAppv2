@@ -33,38 +33,62 @@
         android:id="@+id/AnswerABtn"
         android:layout_width="188dp"
         android:layout_height="133dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
         android:text="Button"
-        app:layout_constraintTop_toBottomOf="@+id/QuestionTextView"
-        tools:layout_editor_absoluteX="10dp" />
+        app:layout_constraintEnd_toStartOf="@+id/AnswerBBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/QuestionTextView" />
 
     <Button
         android:id="@+id/AnswerBBtn"
         android:layout_width="188dp"
         android:layout_height="134dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:text="Button"
-        app:layout_constraintLeft_toRightOf="@+id/AnswerABtn"
+      
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/AnswerABtn"
         app:layout_constraintTop_toBottomOf="@+id/QuestionTextView" />
 
     <Button
         android:id="@+id/AnswerCBtn"
         android:layout_width="188dp"
         android:layout_height="134dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="31dp"
         android:text="Button"
-        app:layout_constraintTop_toBottomOf="@+id/AnswerABtn"
-        tools:layout_editor_absoluteX="10dp" />
+        app:layout_constraintBottom_toTopOf="@+id/nextQuestionBtn"
+        app:layout_constraintEnd_toStartOf="@+id/AnswerDBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AnswerABtn" />
 
     <Button
         android:id="@+id/AnswerDBtn"
         android:layout_width="188dp"
         android:layout_height="134dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="30dp"
         android:text="Button"
-        app:layout_constraintTop_toBottomOf="@+id/AnswerBBtn"
-        tools:layout_editor_absoluteX="207dp" />
+        app:layout_constraintBottom_toTopOf="@+id/nextQuestionBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/AnswerCBtn"
+        app:layout_constraintTop_toBottomOf="@+id/AnswerBBtn" />
 
     <Button
         android:id="@+id/nextQuestionBtn"
