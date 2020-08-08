@@ -75,38 +75,46 @@ class MainActivity : AppCompatActivity() {
         answerABtn.setOnClickListener{
             if(answerABtn.getText().equals(correct)){
                 answerABtn.setBackgroundColor(Color.GREEN)
+                answerABtn.isEnabled = false
             } else {
                 answerABtn.setBackgroundColor(Color.RED)
                 showRightAnswer();
             }
+           // answerABtn.isEnabled = false
         }
         val answerBBtn = findViewById<Button>(R.id.AnswerBBtn)
         answerBBtn.setOnClickListener{
             if(answerBBtn.getText().equals(correct)){
                 answerBBtn.setBackgroundColor(Color.GREEN)
+                answerBBtn.isEnabled = false
             } else {
                 answerBBtn.setBackgroundColor(Color.RED)
                 showRightAnswer();
             }
+          //  answerBBtn.isEnabled = false
         }
         val answerCBtn = findViewById<Button>(R.id.AnswerCBtn)
         answerCBtn.setOnClickListener{
             if(answerCBtn.getText().equals(correct)){
                 answerCBtn.setBackgroundColor(Color.GREEN)
+                answerCBtn.isEnabled = false
             } else {
                 answerCBtn.setBackgroundColor(Color.RED)
                 showRightAnswer();
             }
+         //   answerCBtn.isEnabled = false
         }
         val answerDBtn = findViewById<Button>(R.id.AnswerDBtn)
         answerDBtn.setOnClickListener{
             if(answerDBtn.getText().equals(correct)){
                 answerDBtn.setBackgroundColor(Color.GREEN)
+                answerDBtn.isEnabled = false
             }
             if(!answerDBtn.getText().equals(correct)){
                 answerDBtn.setBackgroundColor(Color.RED)
                 showRightAnswer();
             }
+        //    answerDBtn.isEnabled = false
         }
 
     }
@@ -124,6 +132,11 @@ class MainActivity : AppCompatActivity() {
         if(AnswerDBtn.getText().equals(correct)){
             findViewById<Button>(R.id.AnswerDBtn).setBackgroundColor(Color.GREEN)
         }
+        findViewById<Button>(R.id.AnswerABtn).isEnabled = false
+        findViewById<Button>(R.id.AnswerBBtn).isEnabled = false
+        findViewById<Button>(R.id.AnswerCBtn).isEnabled = false
+        findViewById<Button>(R.id.AnswerDBtn).isEnabled = false
+
     }
 
 
