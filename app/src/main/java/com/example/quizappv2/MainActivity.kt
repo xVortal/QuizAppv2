@@ -71,11 +71,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun defineButtons(){
+        disableNextButton()
         val answerABtn = findViewById<Button>(R.id.AnswerABtn)
         answerABtn.setOnClickListener{
             if(answerABtn.getText().equals(correct)){
                 answerABtn.setBackgroundColor(Color.GREEN)
-                answerABtn.isEnabled = false
+                disableButton()
             } else {
                 answerABtn.setBackgroundColor(Color.RED)
                 showRightAnswer();
@@ -86,7 +87,7 @@ class MainActivity : AppCompatActivity() {
         answerBBtn.setOnClickListener{
             if(answerBBtn.getText().equals(correct)){
                 answerBBtn.setBackgroundColor(Color.GREEN)
-                answerBBtn.isEnabled = false
+                disableButton()
             } else {
                 answerBBtn.setBackgroundColor(Color.RED)
                 showRightAnswer();
@@ -97,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         answerCBtn.setOnClickListener{
             if(answerCBtn.getText().equals(correct)){
                 answerCBtn.setBackgroundColor(Color.GREEN)
-                answerCBtn.isEnabled = false
+                disableButton()
             } else {
                 answerCBtn.setBackgroundColor(Color.RED)
                 showRightAnswer();
@@ -108,7 +109,7 @@ class MainActivity : AppCompatActivity() {
         answerDBtn.setOnClickListener{
             if(answerDBtn.getText().equals(correct)){
                 answerDBtn.setBackgroundColor(Color.GREEN)
-                answerDBtn.isEnabled = false
+                disableButton()
             }
             if(!answerDBtn.getText().equals(correct)){
                 answerDBtn.setBackgroundColor(Color.RED)
@@ -132,12 +133,39 @@ class MainActivity : AppCompatActivity() {
         if(AnswerDBtn.getText().equals(correct)){
             findViewById<Button>(R.id.AnswerDBtn).setBackgroundColor(Color.GREEN)
         }
+        disableButton()
+    }
+
+    private fun disableButton(){
         findViewById<Button>(R.id.AnswerABtn).isEnabled = false
         findViewById<Button>(R.id.AnswerBBtn).isEnabled = false
         findViewById<Button>(R.id.AnswerCBtn).isEnabled = false
         findViewById<Button>(R.id.AnswerDBtn).isEnabled = false
-
+        enableNextButton()
+    }
+    private fun disableNextButton(){
+        findViewById<Button>(R.id.nextQuestionBtn).isEnabled = false
     }
 
+    private fun enableNextButton(){
+        val nextBtn = findViewById<Button>(R.id.nextQuestionBtn)
+        nextBtn.isEnabled = true
+        nextBtn.setOnClickListener{
+            putTheQuestionInApp()
+            enableButtons()
+        }
+    }
+
+    private fun enableButtons(){
+        findViewById<Button>(R.id.AnswerABtn).isEnabled = true
+        findViewById<Button>(R.id.AnswerBBtn).isEnabled = true
+        findViewById<Button>(R.id.AnswerCBtn).isEnabled = true
+        findViewById<Button>(R.id.AnswerDBtn).isEnabled = true
+        disableNextButton()
+    }
+
+    private fun clearForNextQuestion(){
+        enableButtons()
+    }
 
 }
