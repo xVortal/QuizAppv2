@@ -158,9 +158,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun enableButtons(){
         findViewById<Button>(R.id.AnswerABtn).isEnabled = true
+        findViewById<Button>(R.id.AnswerABtn).setBackgroundColor(Color.parseColor("#79A8D3"))
         findViewById<Button>(R.id.AnswerBBtn).isEnabled = true
+        findViewById<Button>(R.id.AnswerBBtn).setBackgroundColor(Color.parseColor("#79A8D3"))
         findViewById<Button>(R.id.AnswerCBtn).isEnabled = true
+        findViewById<Button>(R.id.AnswerCBtn).setBackgroundColor(Color.parseColor("#79A8D3"))
         findViewById<Button>(R.id.AnswerDBtn).isEnabled = true
+        findViewById<Button>(R.id.AnswerDBtn).setBackgroundColor(Color.parseColor("#79A8D3"))
         disableNextButton()
     }
 
