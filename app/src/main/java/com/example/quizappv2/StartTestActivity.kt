@@ -19,8 +19,17 @@ class StartTestActivity : AppCompatActivity(){
     }
 
     fun startQuiz (){
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+        print(getIntent().getStringExtra("modi"))
+        if(getIntent().getStringExtra("modi").equals("lern")) {
+            val intent = Intent(this, MainActivity::class.java)
+          //  intent.putExtra("lvl", getIntent().getIntExtra("lvl"))
+            startActivity(intent)
+        }
+        else{
+            val intent = Intent(this, MainTestActivity::class.java)
+           // intent.putExtra("lvl", getIntent().getIntExtra("lvl"))
+            startActivity(intent)
+        }
     }
 
 }

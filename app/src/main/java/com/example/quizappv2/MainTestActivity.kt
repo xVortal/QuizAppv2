@@ -1,28 +1,21 @@
 package com.example.quizappv2
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.AbsListView
 import android.widget.Button
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main_test.*
 
-class MainActivity : AppCompatActivity() {
+
+class MainTestActivity : AppCompatActivity() {
     internal lateinit var db:DBHelper
     internal var lstQuestion:List<Question> = ArrayList<Question>()
 
     private var correct = ""
 
-    //private val answerABtn = findViewById<Button>(R.id.AnswerABtn)
-    //private val answerBBtn = findViewById<Button>(R.id.AnswerBBtn)
-    //private val answerCBtn = findViewById<Button>(R.id.AnswerCBtn)
-    //private val answerDBtn = findViewById<Button>(R.id.AnswerDBtn)
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main_test)
 
         db = DBHelper(this)
         db.cleanDatabase()
@@ -81,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 answerABtn.setBackgroundColor(Color.RED)
                 showRightAnswer();
             }
-           // answerABtn.isEnabled = false
+            // answerABtn.isEnabled = false
         }
         val answerBBtn = findViewById<Button>(R.id.AnswerBBtn)
         answerBBtn.setOnClickListener{
@@ -92,7 +85,7 @@ class MainActivity : AppCompatActivity() {
                 answerBBtn.setBackgroundColor(Color.RED)
                 showRightAnswer();
             }
-          //  answerBBtn.isEnabled = false
+            //  answerBBtn.isEnabled = false
         }
         val answerCBtn = findViewById<Button>(R.id.AnswerCBtn)
         answerCBtn.setOnClickListener{
@@ -103,7 +96,7 @@ class MainActivity : AppCompatActivity() {
                 answerCBtn.setBackgroundColor(Color.RED)
                 showRightAnswer();
             }
-         //   answerCBtn.isEnabled = false
+            //   answerCBtn.isEnabled = false
         }
         val answerDBtn = findViewById<Button>(R.id.AnswerDBtn)
         answerDBtn.setOnClickListener{
@@ -115,7 +108,7 @@ class MainActivity : AppCompatActivity() {
                 answerDBtn.setBackgroundColor(Color.RED)
                 showRightAnswer();
             }
-        //    answerDBtn.isEnabled = false
+            //    answerDBtn.isEnabled = false
         }
 
     }
@@ -171,5 +164,4 @@ class MainActivity : AppCompatActivity() {
     private fun clearForNextQuestion(){
         enableButtons()
     }
-
 }

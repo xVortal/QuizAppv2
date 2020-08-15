@@ -16,15 +16,17 @@ class WissenLevelAcitivity : AppCompatActivity() {
 
         val grundWissenBtn = findViewById<Button>(R.id.GrundwissenBtn)
         grundWissenBtn.setOnClickListener{
-            setlvl(1)
             val intent = Intent(this, StartTestActivity::class.java)
+            intent.putExtra("modi", getIntent().getStringExtra("modi"))
+            intent.putExtra("lvl", 1)
             startActivity(intent)
         }
 
         val erweitertesWissenBtn = findViewById<Button>(R.id.ErweitertesWissenBtn)
         erweitertesWissenBtn.setOnClickListener{
-            setlvl(2)
             val intent = Intent(this, StartTestActivity::class.java)
+            intent.putExtra("modi", getIntent().getStringExtra("modi"))
+            intent.putExtra("lvl", 2)
             startActivity(intent)
         }
     }

@@ -7,33 +7,23 @@ import androidx.appcompat.app.AppCompatActivity
 
 class ChooseModusActivity : AppCompatActivity() {
 
-    var modus = "";
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_modus)
 
         val testModusBtn = findViewById<Button>(R.id.Testmodusbtn)
         testModusBtn.setOnClickListener{
-            setmodus("test")
             val intent = Intent(this, WissenLevelAcitivity::class.java)
+            intent.putExtra("modi", "test")
             startActivity(intent)
         }
 
         val lernModusBtn = findViewById<Button>(R.id.Lernmodusbtn)
         lernModusBtn.setOnClickListener{
-            setmodus("lern")
             val intent = Intent(this, WissenLevelAcitivity::class.java)
+            intent.putExtra("modi", "lern")
             startActivity(intent)
         }
-    }
-
-    private fun setmodus(modi : String){
-        this.modus = modi
-    }
-
-    public fun getmodus() : String{
-        return modus
     }
 
 }
