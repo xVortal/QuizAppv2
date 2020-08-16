@@ -13,13 +13,6 @@ class MainActivity : AppCompatActivity() {
 
     private var correct = ""
 
-    //private val answerABtn = findViewById<Button>(R.id.AnswerABtn)
-    //private val answerBBtn = findViewById<Button>(R.id.AnswerBBtn)
-    //private val answerCBtn = findViewById<Button>(R.id.AnswerCBtn)
-    //private val answerDBtn = findViewById<Button>(R.id.AnswerDBtn)
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,9 +22,12 @@ class MainActivity : AppCompatActivity() {
 
         fillQuestionsTable()
 
-
-        putTheQuestionInApp()
-
+        if(getIntent().getIntExtra("lvl", 0) == 2) {
+            print(getIntent().getIntExtra("lvl", 1))
+            putTheQuestionInApp()
+        }else{
+            putOnlyEasyQuestionInApp()
+        }
         defineButtons()
     }
 
@@ -44,21 +40,35 @@ class MainActivity : AppCompatActivity() {
 
     private fun fillQuestionsTable(){
         addToQuestionList(1, "Mit welcher Funktion startet jedes Programm?", "func(...)", "first(...)", "main(...)", "function(...)", "main(...)", "1")
-        addToQuestionList(2, "Was ünterstützt eine IDE nicht ?", "Das bieten einer Codevervollständigungs", "Syntax-Fehler werden angezeigt", "Semantik-Fehler werden angezeigt  ", "schrittweise Durchlaufen des Programmcodes", "Semantik-Fehler werden angezeigt  ", "1")
+        addToQuestionList(2, "Was unterstützt eine IDE nicht ?", "Das bieten einer Codevervollständigungs", "Syntax-Fehler werden angezeigt", "Semantik-Fehler werden angezeigt  ", "schrittweise Durchlaufen des Programmcodes", "Semantik-Fehler werden angezeigt  ", "1")
         addToQuestionList(3, "Was ist ein Arbeitsschritt ?", "Zuweisung eines Wertes", "eine Funktion", "eine Variable", "eine Methode", "Zuweisung eines Wertes", "1")
         addToQuestionList(4, "Was wird ausgegeben beim Programmcodeschnipsel: println('Hello, world')println('hi') ?","Hello, worldhi","ein Fehler","Hello, world","hi","ein Fehler","1")
+        addToQuestionList(5, "Was wird ausgegeben beim Programmcodeschnipsel:var zahl = 4 var text = 'AP' println(zahl + text +'hi')", "4APhi","4AP hi", "4AP", "ein Fehler","ein Fehler", "2")
+        addToQuestionList(6, "Was wird ausgegeben beim Programmcodeschnipsel: fun main ( args : Array <String> ) { var inhaltFlasche = 80 var inhaltGlas : Int = 40 val maxGlas = 150 val umfuellMenge = maxGlas - inhaltGlas if ( inhaltFlasche >= umfuellMenge) { inhaltGlas += umfuellMenge inhaltFlasche -= umfuellMenge } else { inhaltGlas += inhaltFlasche inhaltFlasche -= inhaltFlasche } println ('In der Flasche sind noch €inhaltFlasche ml. vorhanden.')" + "}", "einen Fehler", "In der Flasche sind noch -30 ml. vorhanden.", "In der Flasche sind noch 0 ml. vorhanden. ", "In der Flasche sind noch 30 ml. vorhanden.", "In der Flasche sind noch 0 ml. vorhanden. ", "2")
+        addToQuestionList(7, "Wir wird eine Funktion aufgebaut ?", "Schlüsselwort, Funktionsname, Parameterliste, Rückgabetyp", "Funktionsname, Parameterliste, Schlüsselwort, Rückgabegerät", "Rückgabegerät, Parameterliste, Funktionsname, Schlüsselwort", "Funktionsname, Schlüsselwort, Parameterliste, Rückgabetyp", "Schlüsselwort, Funktionsname, Parameterliste, Rückgabetyp","2")
     }
 
     private fun putTheQuestionInApp(){
         if(intent != null){
-            val questions: Question = db!!.getOneQuestion(getRandomInteger())
-            print(questions.id)
+            val questions: Question = db.getOneFromAllQuestions()//getOneQuestion(getRandomInteger())
             QuestionTextView.setText(questions.question)
             AnswerABtn.setText(questions.answera)
             AnswerBBtn.setText(questions.answerb)
             AnswerCBtn.setText(questions.answerc)
             AnswerDBtn.setText(questions.answerd)
             this.correct = questions.correctanswer.toString()
+        }
+    }
+
+    private fun putOnlyEasyQuestionInApp(){
+        if(intent != null){
+            val question: Question = db.getEasyQuestion()
+            QuestionTextView.setText(question.question)
+            AnswerABtn.setText(question.answera)
+            AnswerBBtn.setText(question.answerb)
+            AnswerCBtn.setText(question.answerc)
+            AnswerDBtn.setText(question.answerd)
+            this.correct = question.correctanswer.toString()
         }
     }
 
@@ -150,9 +160,14 @@ class MainActivity : AppCompatActivity() {
     private fun enableNextButton(){
         val nextBtn = findViewById<Button>(R.id.nextQuestionBtn)
         nextBtn.isEnabled = true
-        nextBtn.setOnClickListener{
-            putTheQuestionInApp()
-            enableButtons()
+        nextBtn.setOnClickListener {
+            if (getIntent().getIntExtra("lvl", 0) == 2){
+                putTheQuestionInApp()
+                enableButtons()
+            } else {
+                putOnlyEasyQuestionInApp()
+                enableButtons()
+            }
         }
     }
 

@@ -2,6 +2,7 @@ package com.example.quizappv2
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.DatabaseUtils
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
@@ -77,11 +78,17 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
         db.close()
     }
 
-    fun getOneQuestion(id : Int) : Question
+    fun getOneFromAllQuestions() : Question {
+        val db = this.writableDatabase
+        var count = DatabaseUtils.queryNumEntries(db, TABLE_NAME)
+        val randomInteger = (1..count.toInt()).random()
+        return getOneQuestion(randomInteger)
+    }
+
+    private fun  getOneQuestion(id : Int) : Question
     {
         val db = this.writableDatabase
         val questions = Question()
-        println(id)
         val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $COL_ID = $id"
         val cursor = db.rawQuery(selectQuery,null)
         if(cursor != null){
@@ -100,6 +107,26 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
         }
         cursor.close()
         return questions
+    }
+
+    fun getEasyQuestion() : Question {
+        val db = this.writableDatabase
+       // val question = Question()
+        var list = mutableListOf<Int>()
+        var randomInteger= 0
+        val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $COL_DIFFICULTY = 1"
+        val cursor = db.rawQuery(selectQuery, null)
+        if(cursor != null){
+            cursor.moveToFirst()
+            while(cursor.moveToNext()){
+                list.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_ID))))
+            }
+            randomInteger = list.random()
+        }
+        cursor.close()
+        println(randomInteger)
+        return getOneQuestion(randomInteger)
+
     }
 
     fun cleanDatabase(){
