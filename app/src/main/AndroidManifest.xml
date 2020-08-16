@@ -9,16 +9,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChooseModusActivity">
+        <activity android:name=".ChooseModusActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WissenLevelAcitivity"></activity>
-        <activity android:name=".StartTestActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".MainTestActivity"></activity>
+        <activity android:name=".WissenLevelAcitivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".StartTestActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".MainTestActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
