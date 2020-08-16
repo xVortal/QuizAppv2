@@ -21,13 +21,15 @@ class StartTestActivity : AppCompatActivity(){
     fun startQuiz (){
         print(getIntent().getStringExtra("modi"))
         if(getIntent().getStringExtra("modi").equals("lern")) {
+            //val lvl = getIntent().getIntExtra("lvl", 1)
             val intent = Intent(this, MainActivity::class.java)
-          //  intent.putExtra("lvl", getIntent().getIntExtra("lvl"))
+            intent.putExtra("lvl", getIntent().getIntExtra("lvl", 1))
             startActivity(intent)
         }
         else{
+            //val lvl = getIntent().getIntExtra("lvl", 1)
             val intent = Intent(this, MainTestActivity::class.java)
-           // intent.putExtra("lvl", getIntent().getIntExtra("lvl"))
+            intent.putExtra("lvl", getIntent().getIntExtra("lvl", 1))
             startActivity(intent)
         }
     }
