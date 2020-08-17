@@ -3,6 +3,7 @@ package com.example.quizappv2
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main_test.*
 
@@ -12,6 +13,7 @@ class MainTestActivity : AppCompatActivity() {
     internal var lstQuestion:List<Question> = ArrayList<Question>()
 
     private var correct = ""
+    private var questionProgressNumber = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -165,9 +167,11 @@ class MainTestActivity : AppCompatActivity() {
         nextBtn.isEnabled = true
         nextBtn.setOnClickListener{
             if (getIntent().getIntExtra("lvl", 0) == 2){
+                raiseTheProgessBar()
                 putTheQuestionInApp()
                 enableButtons()
             } else {
+                raiseTheProgessBar()
                 putOnlyEasyQuestionInApp()
                 enableButtons()
             }
@@ -186,7 +190,28 @@ class MainTestActivity : AppCompatActivity() {
         disableNextButton()
     }
 
+    fun raiseTheProgessBar(){
+        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+        var progessraised = getQuestionProgessNumber() + 5
+        setQuestionProgressNumber(progessraised)
+        progressBar.setProgress(getQuestionProgessNumber())
+        println("Return upper Limit of PB Max "+ progressBar.getMax())
+        println("Get The Current Process of PB " + progressBar.getProgress())
+        if(progressBar.getMax() == getQuestionProgessNumber()){
+            //hier muss man dann zur statistik view
+        }
+
+    }
+
     private fun clearForNextQuestion(){
         enableButtons()
+    }
+
+    fun getQuestionProgessNumber() : Int{
+        return this.questionProgressNumber
+    }
+
+    private fun setQuestionProgressNumber(number : Int){
+        this. questionProgressNumber = number
     }
 }
