@@ -42,37 +42,57 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/Status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
         android:text="nicht bestanden"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar4" />
+        app:layout_constraintTop_toBottomOf="@+id/StatisticBar" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/anzahlRichtig"
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_marginTop="32dp"
         android:text="3/7"
-        app:layout_constraintEnd_toStartOf="@+id/textView6"
+        app:layout_constraintEnd_toStartOf="@+id/prozentRichtig"
         app:layout_constraintStart_toEndOf="@+id/richtig"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/anzahlFalsch"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:text="3/7"
+        app:layout_constraintEnd_toStartOf="@+id/prozentFalsch"
+        app:layout_constraintStart_toEndOf="@+id/falsch"
+        app:layout_constraintTop_toBottomOf="@+id/anzahlRichtig" />
+
+    <TextView
+        android:id="@+id/prozentRichtig"
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_marginTop="32dp"
         android:text="90%"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintStart_toEndOf="@+id/anzahlRichtig"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/prozentFalsch"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:text="90%"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/anzahlFalsch"
+        app:layout_constraintTop_toBottomOf="@+id/prozentRichtig" />
+
     <ProgressBar
-        android:id="@+id/progressBar4"
+        android:id="@+id/StatisticBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="242dp"
         android:layout_height="53dp"
