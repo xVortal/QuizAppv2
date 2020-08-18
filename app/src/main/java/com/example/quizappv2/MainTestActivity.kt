@@ -199,8 +199,10 @@ class MainTestActivity : AppCompatActivity() {
         println("Return upper Limit of PB Max "+ progressBar.getMax())
         println("Get The Current Process of PB " + progressBar.getProgress())
         if(progressBar.getMax() == getQuestionProgessNumber()){
-        //    val intent = Intent(this, StatisticActivity::class.java)
-        //    startActivity(intent)
+            setQuestionProgressNumber(0)
+            progressBar.setProgress(getQuestionProgessNumber())
+            val intent = Intent(this, StatisticView::class.java)
+            startActivity(intent)
         }
 
     }

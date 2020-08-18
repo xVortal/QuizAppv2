@@ -28,6 +28,9 @@
         <activity android:name=".MainTestActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".StatisticView"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
