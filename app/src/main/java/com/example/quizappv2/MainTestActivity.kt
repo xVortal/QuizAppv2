@@ -90,10 +90,10 @@ class MainTestActivity : AppCompatActivity() {
         val answerABtn = findViewById<Button>(R.id.AnswerABtn)
         answerABtn.setOnClickListener{
             if(answerABtn.getText().equals(correct)){
-                answerABtn.setBackgroundColor(Color.GREEN)
+                answerABtn.setBackgroundColor(Color.parseColor("#5cbd28"))
                 disableButton()
             } else {
-                answerABtn.setBackgroundColor(Color.RED)
+                answerABtn.setBackgroundColor(Color.parseColor("#c91616"))
                 showRightAnswer();
             }
             // answerABtn.isEnabled = false
@@ -101,10 +101,10 @@ class MainTestActivity : AppCompatActivity() {
         val answerBBtn = findViewById<Button>(R.id.AnswerBBtn)
         answerBBtn.setOnClickListener{
             if(answerBBtn.getText().equals(correct)){
-                answerBBtn.setBackgroundColor(Color.GREEN)
+                answerBBtn.setBackgroundColor(Color.parseColor("#5cbd28"))
                 disableButton()
             } else {
-                answerBBtn.setBackgroundColor(Color.RED)
+                answerBBtn.setBackgroundColor(Color.parseColor("#c91616"))
                 showRightAnswer();
             }
             //  answerBBtn.isEnabled = false
@@ -112,10 +112,10 @@ class MainTestActivity : AppCompatActivity() {
         val answerCBtn = findViewById<Button>(R.id.AnswerCBtn)
         answerCBtn.setOnClickListener{
             if(answerCBtn.getText().equals(correct)){
-                answerCBtn.setBackgroundColor(Color.GREEN)
+                answerCBtn.setBackgroundColor(Color.parseColor("#5cbd28"))
                 disableButton()
             } else {
-                answerCBtn.setBackgroundColor(Color.RED)
+                answerCBtn.setBackgroundColor(Color.parseColor("#c91616"))
                 showRightAnswer();
             }
             //   answerCBtn.isEnabled = false
@@ -123,11 +123,11 @@ class MainTestActivity : AppCompatActivity() {
         val answerDBtn = findViewById<Button>(R.id.AnswerDBtn)
         answerDBtn.setOnClickListener{
             if(answerDBtn.getText().equals(correct)){
-                answerDBtn.setBackgroundColor(Color.GREEN)
+                answerDBtn.setBackgroundColor(Color.parseColor("#5cbd28"))
                 disableButton()
             }
             if(!answerDBtn.getText().equals(correct)){
-                answerDBtn.setBackgroundColor(Color.RED)
+                answerDBtn.setBackgroundColor(Color.parseColor("#c91616"))
                 showRightAnswer();
             }
             //    answerDBtn.isEnabled = false
@@ -137,16 +137,16 @@ class MainTestActivity : AppCompatActivity() {
 
     private fun showRightAnswer(){
         if(AnswerABtn.getText().equals(correct)){
-            findViewById<Button>(R.id.AnswerABtn).setBackgroundColor(Color.GREEN)
+            findViewById<Button>(R.id.AnswerABtn).setBackgroundColor(Color.parseColor("#5cbd28"))
         }
         if(AnswerBBtn.getText().equals(correct)){
-            findViewById<Button>(R.id.AnswerBBtn).setBackgroundColor(Color.GREEN)
+            findViewById<Button>(R.id.AnswerBBtn).setBackgroundColor(Color.parseColor("#5cbd28"))
         }
         if(AnswerCBtn.getText().equals(correct)){
-            findViewById<Button>(R.id.AnswerCBtn).setBackgroundColor(Color.GREEN)
+            findViewById<Button>(R.id.AnswerCBtn).setBackgroundColor(Color.parseColor("#5cbd28"))
         }
         if(AnswerDBtn.getText().equals(correct)){
-            findViewById<Button>(R.id.AnswerDBtn).setBackgroundColor(Color.GREEN)
+            findViewById<Button>(R.id.AnswerDBtn).setBackgroundColor(Color.parseColor("#5cbd28"))
         }
         disableButton()
     }
