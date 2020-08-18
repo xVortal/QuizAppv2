@@ -15,6 +15,7 @@ class MainTestActivity : AppCompatActivity() {
 
     private var correct = ""
     private var questionProgressNumber = 0
+    private var wrongAnswerCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -149,6 +150,7 @@ class MainTestActivity : AppCompatActivity() {
         if(AnswerDBtn.getText().equals(correct)){
             findViewById<Button>(R.id.AnswerDBtn).setBackgroundColor(Color.parseColor("#5cbd28"))
         }
+        setWrongAnswerCount(getWrongAnswerCount()+1)
         disableButton()
     }
 
@@ -217,5 +219,13 @@ class MainTestActivity : AppCompatActivity() {
 
     private fun setQuestionProgressNumber(number : Int){
         this. questionProgressNumber = number
+    }
+
+    private fun setWrongAnswerCount(i : Int){
+        this.wrongAnswerCount = i
+    }
+
+    private fun getWrongAnswerCount() : Int{
+        return this.wrongAnswerCount
     }
 }
