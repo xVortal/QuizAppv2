@@ -1,5 +1,6 @@
 package com.example.quizappv2
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
@@ -198,7 +199,8 @@ class MainTestActivity : AppCompatActivity() {
         println("Return upper Limit of PB Max "+ progressBar.getMax())
         println("Get The Current Process of PB " + progressBar.getProgress())
         if(progressBar.getMax() == getQuestionProgessNumber()){
-            //hier muss man dann zur statistik view
+        //    val intent = Intent(this, StatisticActivity::class.java)
+        //    startActivity(intent)
         }
 
     }

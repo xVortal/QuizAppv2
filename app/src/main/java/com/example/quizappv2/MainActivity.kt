@@ -1,5 +1,6 @@
 package com.example.quizappv2
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
             putOnlyEasyQuestionInApp()
         }
         defineButtons()
+        defineHomeButton()
     }
 
 
@@ -185,6 +187,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun clearForNextQuestion(){
         enableButtons()
+    }
+
+    private fun defineHomeButton(){
+        val homebutton = findViewById<Button>(R.id.home)
+        homebutton.setOnClickListener{
+            val intent = Intent(this, ChooseModusActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 }
