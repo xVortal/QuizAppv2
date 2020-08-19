@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main_test.*
@@ -35,6 +36,7 @@ class MainTestActivity : AppCompatActivity() {
         }
 
         defineButtons()
+        defineHomeButton()
     }
 
 
@@ -207,6 +209,14 @@ class MainTestActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+    }
+
+    private fun defineHomeButton(){
+        val homebutton = findViewById<ImageButton>(R.id.home)
+        homebutton.setOnClickListener{
+            val intent = Intent(this, ChooseModusActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun clearForNextQuestion(){
