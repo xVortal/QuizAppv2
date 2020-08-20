@@ -206,6 +206,7 @@ class MainTestActivity : AppCompatActivity() {
             setQuestionProgressNumber(0)
             progressBar.setProgress(getQuestionProgessNumber())
             val intent = Intent(this, StatisticView::class.java)
+            intent.putExtra("WAC", getWrongAnswerCount())
             startActivity(intent)
         }
 
