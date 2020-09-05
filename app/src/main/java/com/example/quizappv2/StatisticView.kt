@@ -52,14 +52,14 @@ class StatisticView : AppCompatActivity() {
         val f = DecimalFormat("#0.00")
         println(getIntent().getIntExtra("WAC", 0).toFloat())
 
-        var rightanswerprocent : Float = (20 / (20 - getIntent().getIntExtra("WAC", 0).toFloat()))
+        var rightanswerprocent : Float = (((20 - getIntent().getIntExtra("WAC", 0).toFloat()) / 20) * 100)
         println("richtige Antwort Prozent: " + rightanswerprocent)
         return f.format(rightanswerprocent)
     }
 
     private fun getWrongAnswerProcent() : String{
         val f = DecimalFormat("#0.00")
-        var rightanswerprocent : Float = (20 / (20 - getIntent().getIntExtra("WAC", 0).toFloat()))
+        var rightanswerprocent : Float = (((20 - getIntent().getIntExtra("WAC", 0).toFloat()) / 20) * 100)
         var wronganswerprocent = 100-rightanswerprocent
         println("falsche Antwort Prozent: " + wronganswerprocent)
         return f.format(wronganswerprocent)
