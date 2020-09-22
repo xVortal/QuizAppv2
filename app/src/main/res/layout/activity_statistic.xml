@@ -12,6 +12,8 @@
         android:layout_width="130dp"
         android:layout_height="30dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:gravity="center"
         android:text="richtig beantwortet:"
         app:layout_constraintBottom_toTopOf="@+id/falsch"
@@ -25,6 +27,8 @@
         android:layout_height="30dp"
 
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:gravity="center"
         android:text="falsch beantwortet:"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +47,7 @@
 
     <TextView
         android:id="@+id/anzahlRichtig"
-        android:layout_width="40dp"
+        android:layout_width="45dp"
         android:layout_height="30dp"
         android:layout_marginTop="32dp"
         android:text="3/7"
@@ -53,7 +57,7 @@
 
     <TextView
         android:id="@+id/anzahlFalsch"
-        android:layout_width="40dp"
+        android:layout_width="45dp"
         android:layout_height="30dp"
         android:layout_marginTop="16dp"
         android:text="3/7"
@@ -63,20 +67,20 @@
 
     <TextView
         android:id="@+id/prozentRichtig"
-        android:layout_width="40dp"
+        android:layout_width="50dp"
         android:layout_height="30dp"
         android:layout_marginTop="32dp"
-        android:text="90%"
+        android:text="90 %"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/anzahlRichtig"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/prozentFalsch"
-        android:layout_width="40dp"
+        android:layout_width="50dp"
         android:layout_height="30dp"
         android:layout_marginTop="16dp"
-        android:text="90%"
+        android:text="90 %"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/anzahlFalsch"
         app:layout_constraintTop_toBottomOf="@+id/prozentRichtig" />
