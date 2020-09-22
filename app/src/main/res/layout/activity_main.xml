@@ -21,6 +21,9 @@
         android:text="Quizify"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeMaxTextSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +35,8 @@
         android:layout_marginTop="8dp"
         android:background="#79A8D3"
         android:text="Button"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeMaxTextSize="100sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/AnswerCBtn"
         app:layout_constraintTop_toBottomOf="@+id/AnswerBBtn" />
@@ -43,6 +48,8 @@
         android:layout_marginTop="8dp"
         android:background="#79A8D3"
         android:text="Button"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeMaxTextSize="100sp"
         app:layout_constraintEnd_toStartOf="@+id/AnswerDBtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AnswerABtn" />
@@ -54,6 +61,8 @@
         android:layout_marginTop="16dp"
         android:background="#79A8D3"
         android:text="Button"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeMaxTextSize="100sp"
         app:layout_constraintEnd_toStartOf="@+id/AnswerBBtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/QuestionTextView" />
@@ -65,6 +74,8 @@
         android:layout_marginTop="16dp"
         android:background="#79A8D3"
         android:text="Button"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeMaxTextSize="100sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/AnswerABtn"
         app:layout_constraintTop_toBottomOf="@+id/QuestionTextView" />
