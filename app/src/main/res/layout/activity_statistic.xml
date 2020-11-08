@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bildschirmhintergrund">
+
+    <TextView
+        android:id="@+id/richtig"
+        android:layout_width="130dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:gravity="center"
+        android:text="richtig beantwortet:"
+        app:layout_constraintBottom_toTopOf="@+id/falsch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/falsch"
+        android:layout_width="130dp"
+        android:layout_height="30dp"
+
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:gravity="center"
+        android:text="falsch beantwortet:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/richtig" />
+
+    <TextView
+        android:id="@+id/Status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:text="nicht bestanden"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StatisticBar" />
+
+    <TextView
+        android:id="@+id/anzahlRichtig"
+        android:layout_width="45dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="32dp"
+        android:text="3/7"
+        app:layout_constraintEnd_toStartOf="@+id/prozentRichtig"
+        app:layout_constraintStart_toEndOf="@+id/richtig"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/anzahlFalsch"
+        android:layout_width="45dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:text="3/7"
+        app:layout_constraintEnd_toStartOf="@+id/prozentFalsch"
+        app:layout_constraintStart_toEndOf="@+id/falsch"
+        app:layout_constraintTop_toBottomOf="@+id/anzahlRichtig" />
+
+    <TextView
+        android:id="@+id/prozentRichtig"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="32dp"
+        android:text="90 %"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/anzahlRichtig"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/prozentFalsch"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:text="90 %"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/anzahlFalsch"
+        app:layout_constraintTop_toBottomOf="@+id/prozentRichtig" />
+
+    <ProgressBar
+        android:id="@+id/StatisticBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="242dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="75dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/falsch" />
+
+    <ImageButton
+        android:id="@+id/home"
+        android:layout_width="58dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="250dp"
+        android:background="#0693D6"
+        android:backgroundTint="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Status"
+        app:srcCompat="@drawable/baseline_home_black_18" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

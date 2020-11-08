@@ -2,27 +2,31 @@ package com.example.quizappv2
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.AbsListView
 import android.widget.Button
 import android.widget.ImageButton
-import kotlinx.android.synthetic.main.activity_main.*
+import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main_test.*
 
-class MainActivity : AppCompatActivity() {
+
+class MainTestActivity : AppCompatActivity() {
     internal lateinit var db:DBHelper
     internal var lstQuestion:List<Question> = ArrayList<Question>()
 
     private var correct = ""
+    private var questionProgressNumber = 0
+    private var wrongAnswerCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main_test)
 
         db = DBHelper(this)
         db.cleanDatabase()
 
         db.fillQuestionsTable()
+
 
         if(getIntent().getIntExtra("lvl", 0) == 2) {
             print(getIntent().getIntExtra("lvl", 1))
@@ -30,13 +34,15 @@ class MainActivity : AppCompatActivity() {
         }else{
             putOnlyEasyQuestionInApp()
         }
+
         defineButtons()
         defineHomeButton()
     }
-    
+
     private fun putTheQuestionInApp(){
         if(intent != null){
-            val questions: Question = db.getOneFromAllQuestions()
+            val questions: Question = db.getOneFromAllQuestions()//getOneQuestion(getRandomInteger())
+            print(questions.id)
             QuestionTextView.setText(questions.question)
             AnswerABtn.setText(questions.answera)
             AnswerBBtn.setText(questions.answerb)
@@ -58,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+    //muss noch auf die maximale Anzahl an Einträgen verbessert werden
     private fun getRandomInteger() : Int
     {
         val randomInteger = (1..4).random()
@@ -77,7 +83,7 @@ class MainActivity : AppCompatActivity() {
                 answerABtn.setBackgroundColor(Color.parseColor("#c91616"))
                 showRightAnswer();
             }
-
+            // answerABtn.isEnabled = false
         }
         val answerBBtn = findViewById<Button>(R.id.AnswerBBtn)
         answerBBtn.setOnClickListener{
@@ -88,7 +94,7 @@ class MainActivity : AppCompatActivity() {
                 answerBBtn.setBackgroundColor(Color.parseColor("#c91616"))
                 showRightAnswer();
             }
-
+            //  answerBBtn.isEnabled = false
         }
         val answerCBtn = findViewById<Button>(R.id.AnswerCBtn)
         answerCBtn.setOnClickListener{
@@ -99,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                 answerCBtn.setBackgroundColor(Color.parseColor("#c91616"))
                 showRightAnswer();
             }
-
+            //   answerCBtn.isEnabled = false
         }
         val answerDBtn = findViewById<Button>(R.id.AnswerDBtn)
         answerDBtn.setOnClickListener{
@@ -111,7 +117,7 @@ class MainActivity : AppCompatActivity() {
                 answerDBtn.setBackgroundColor(Color.parseColor("#c91616"))
                 showRightAnswer();
             }
-
+            //    answerDBtn.isEnabled = false
         }
 
     }
@@ -129,6 +135,7 @@ class MainActivity : AppCompatActivity() {
         if(AnswerDBtn.getText().equals(correct)){
             findViewById<Button>(R.id.AnswerDBtn).setBackgroundColor(Color.parseColor("#5cbd28"))
         }
+        setWrongAnswerCount(getWrongAnswerCount()+1)
         disableButton()
     }
 
@@ -146,11 +153,13 @@ class MainActivity : AppCompatActivity() {
     private fun enableNextButton(){
         val nextBtn = findViewById<Button>(R.id.nextQuestionBtn)
         nextBtn.isEnabled = true
-        nextBtn.setOnClickListener {
+        nextBtn.setOnClickListener{
             if (getIntent().getIntExtra("lvl", 0) == 2){
+                raiseTheProgessBar()
                 putTheQuestionInApp()
                 enableButtons()
             } else {
+                raiseTheProgessBar()
                 putOnlyEasyQuestionInApp()
                 enableButtons()
             }
@@ -169,8 +178,21 @@ class MainActivity : AppCompatActivity() {
         disableNextButton()
     }
 
-    private fun clearForNextQuestion(){
-        enableButtons()
+    fun raiseTheProgessBar(){
+        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+        var progessraised = getQuestionProgessNumber() + 5
+        setQuestionProgressNumber(progessraised)
+        progressBar.setProgress(getQuestionProgessNumber())
+        println("Return upper Limit of PB Max "+ progressBar.getMax())
+        println("Get The Current Process of PB " + progressBar.getProgress())
+        if(progressBar.getMax() == getQuestionProgessNumber()){
+            setQuestionProgressNumber(0)
+            progressBar.setProgress(getQuestionProgessNumber())
+            val intent = Intent(this, StatisticView::class.java)
+            intent.putExtra("WAC", getWrongAnswerCount())
+            startActivity(intent)
+        }
+
     }
 
     private fun defineHomeButton(){
@@ -181,4 +203,23 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun clearForNextQuestion(){
+        enableButtons()
+    }
+
+    fun getQuestionProgessNumber() : Int{
+        return this.questionProgressNumber
+    }
+
+    private fun setQuestionProgressNumber(number : Int){
+        this. questionProgressNumber = number
+    }
+
+    private fun setWrongAnswerCount(i : Int){
+        this.wrongAnswerCount = i
+    }
+
+    private fun getWrongAnswerCount() : Int{
+        return this.wrongAnswerCount
+    }
 }

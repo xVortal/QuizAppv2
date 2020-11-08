@@ -2,6 +2,7 @@ package com.example.quizappv2
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.DatabaseUtils
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
@@ -60,7 +61,25 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
             return lstQuestion
         }
 
-    fun addQuestions(question: Question)
+    private fun addToQuestionList(id: Int, question: String, answera: String, answerb:String, answerc:String, answerd:String, correctanswer:String, difficulty:String){
+        val question = Question( id, question, answera, answerb, answerc, answerd, correctanswer, difficulty)
+        addQuestions(question)
+    }
+
+    fun fillQuestionsTable(){
+        addToQuestionList(1, "Mit welcher Funktion startet jedes Programm?", "func(...)",
+            "first(...)", "main(...)", "function(...)", "main(...)", "1")
+
+        addToQuestionList(2, "Was unterstützt eine IDE nicht ?", "Das bieten einer Codevervollständigungs", "Syntax-Fehler werden angezeigt", "Semantik-Fehler werden angezeigt  ", "schrittweise Durchlaufen des Programmcodes", "Semantik-Fehler werden angezeigt  ", "1")
+        addToQuestionList(3, "Was ist ein Arbeitsschritt ?", "Zuweisung eines Wertes", "eine Funktion", "eine Variable", "eine Methode", "Zuweisung eines Wertes", "1")
+        addToQuestionList(4, "Was wird ausgegeben beim Programmcodeschnipsel: println('Hello, world')println('hi') ?","Hello, worldhi","ein Fehler","Hello, world","hi","ein Fehler","1")
+        addToQuestionList(5, "Was wird ausgegeben beim Programmcodeschnipsel:var zahl = 4 var text = 'AP' println(zahl + text +'hi')", "4APhi","4AP hi", "4AP", "ein Fehler","ein Fehler", "2")
+        addToQuestionList(6, "Was wird ausgegeben beim Programmcodeschnipsel: fun main ( args : Array <String> ) { var inhaltFlasche = 80 var inhaltGlas : Int = 40 val maxGlas = 150 val umfuellMenge = maxGlas - inhaltGlas if ( inhaltFlasche >= umfuellMenge) { inhaltGlas += umfuellMenge inhaltFlasche -= umfuellMenge } else { inhaltGlas += inhaltFlasche inhaltFlasche -= inhaltFlasche } println ('In der Flasche sind noch €inhaltFlasche ml. vorhanden.')" + "}",
+            "einen Fehler", "In der Flasche sind noch -30 ml. vorhanden.", "In der Flasche sind noch 0 ml. vorhanden. ", "In der Flasche sind noch 30 ml. vorhanden.", "In der Flasche sind noch 0 ml. vorhanden. ", "2")
+        addToQuestionList(7, "Wie wird eine Funktion aufgebaut ?", "Schlüsselwort, Funktionsname, Parameterliste, Rückgabetyp", "Funktionsname, Parameterliste, Schlüsselwort, Rückgabegerät", "Rückgabegerät, Parameterliste, Funktionsname, Schlüsselwort", "Funktionsname, Schlüsselwort, Parameterliste, Rückgabetyp", "Schlüsselwort, Funktionsname, Parameterliste, Rückgabetyp","2")
+    }
+
+    private fun addQuestions(question: Question)
     {
         val db = this.writableDatabase
         val values = ContentValues()
@@ -77,11 +96,17 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
         db.close()
     }
 
-    fun getOneQuestion(id : Int) : Question
+    fun getOneFromAllQuestions() : Question {
+        val db = this.writableDatabase
+        var count = DatabaseUtils.queryNumEntries(db, TABLE_NAME)
+        val randomInteger = (1..count.toInt()).random()
+        return getOneQuestion(randomInteger)
+    }
+
+    private fun  getOneQuestion(id : Int) : Question
     {
         val db = this.writableDatabase
         val questions = Question()
-        println(id)
         val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $COL_ID = $id"
         val cursor = db.rawQuery(selectQuery,null)
         if(cursor != null){
@@ -102,9 +127,30 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
         return questions
     }
 
+    fun getEasyQuestion() : Question {
+        val db = this.writableDatabase
+       // val question = Question()
+        var list = mutableListOf<Int>()
+        var randomInteger= 0
+        val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $COL_DIFFICULTY = 1"
+        val cursor = db.rawQuery(selectQuery, null)
+        if(cursor != null){
+            cursor.moveToFirst()
+            while(cursor.moveToNext()){
+                list.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_ID))))
+            }
+            randomInteger = list.random()
+        }
+        cursor.close()
+        println(randomInteger)
+        return getOneQuestion(randomInteger)
+
+    }
+
     fun cleanDatabase(){
         val db = this.writableDatabase
         db.execSQL("DELETE FROM " + TABLE_NAME)
+        db.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE name = '"+ TABLE_NAME +"'")
 
     }
 }
