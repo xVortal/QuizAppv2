@@ -67,7 +67,7 @@ class StatisticView : AppCompatActivity() {
 
     private fun defineProgressBar(){
         val progressBarEnd = findViewById<ProgressBar>(R.id.StatisticBar)
-        progressBarEnd.setProgress(20 - getIntent().getIntExtra("WAC", 0))
+        progressBarEnd.setProgress((20*5) - (getIntent().getIntExtra("WAC", 0)*5))
     }
 
     private fun definePassOrNotPassed(){
