@@ -2,6 +2,7 @@ package com.example.quizappv2
 
 import android.content.Intent
 import android.graphics.Color
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.AbsListView
@@ -69,9 +70,11 @@ class MainActivity : AppCompatActivity() {
     private fun defineButtons(){
         disableNextButton()
         val answerABtn = findViewById<Button>(R.id.AnswerABtn)
+        var mp = MediaPlayer.create(this, R.raw.richtig)
         answerABtn.setOnClickListener{
             if(answerABtn.getText().equals(correct)){
                 answerABtn.setBackgroundColor(Color.parseColor("#5cbd28"))
+                mp.start()
                 disableButton()
             } else {
                 answerABtn.setBackgroundColor(Color.parseColor("#c91616"))
@@ -83,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         answerBBtn.setOnClickListener{
             if(answerBBtn.getText().equals(correct)){
                 answerBBtn.setBackgroundColor(Color.parseColor("#5cbd28"))
+                mp.start()
                 disableButton()
             } else {
                 answerBBtn.setBackgroundColor(Color.parseColor("#c91616"))
@@ -95,6 +99,7 @@ class MainActivity : AppCompatActivity() {
             if(answerCBtn.getText().equals(correct)){
                 answerCBtn.setBackgroundColor(Color.parseColor("#5cbd28"))
                 disableButton()
+                mp.start()
             } else {
                 answerCBtn.setBackgroundColor(Color.parseColor("#c91616"))
                 showRightAnswer();
@@ -106,6 +111,7 @@ class MainActivity : AppCompatActivity() {
             if(answerDBtn.getText().equals(correct)){
                 answerDBtn.setBackgroundColor(Color.parseColor("#5cbd28"))
                 disableButton()
+                mp.start()
             }
             if(!answerDBtn.getText().equals(correct)){
                 answerDBtn.setBackgroundColor(Color.parseColor("#c91616"))

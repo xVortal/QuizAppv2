@@ -1,6 +1,7 @@
 package com.example.quizappv2
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.ProgressBar
@@ -73,9 +74,12 @@ class StatisticView : AppCompatActivity() {
     private fun definePassOrNotPassed(){
         val passOrNotPassed = findViewById<TextView>(R.id.Status)
         if(getRightAnswerProcent().toFloat() > 80){
+            var mp = MediaPlayer.create(this, R.raw.bestanden)
+            mp.start()
             passOrNotPassed.setText("bestanden")
         } else {
             passOrNotPassed.setText("nicht bestanden")
         }
     }
+
 }
