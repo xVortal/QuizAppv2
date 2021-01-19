@@ -23,10 +23,11 @@ class MainTestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_test)
 
+        //diese 3 Funktionen für geamification ausgeschaltet
         db = DBHelper(this)
-        db.cleanDatabase()
+      //  db.cleanDatabase()
 
-        db.fillQuestionsTable()
+      //  db.fillQuestionsTable()
 
 
         if(getIntent().getIntExtra("lvl", 0) == 2) {
