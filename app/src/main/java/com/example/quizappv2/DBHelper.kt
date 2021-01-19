@@ -217,26 +217,53 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
 
     fun checkIfUserIsAvailable(): Boolean{
         val db = this.readableDatabase
+        var available : Boolean
+        available = false
         val selectQuery = "SELECT * FROM $USER_TABLE_NAME WHERE $COL_USER_ID = 1;"
         println(selectQuery)
         val cursor = db.rawQuery(selectQuery,null)
-        if (cursor != null){
-            return true
+        if (cursor != null && cursor.moveToFirst()){
+            available = true
         }
-        return false
+        cursor.close()
+        return available
     }
 
-    fun getUserName() : String{
-        val db = this.readableDatabase
-        val selectQuery = "SELECT $COL_USER_NAME FROM $USER_TABLE_NAME WHERE $COL_USER_ID = 1;"
-        println(selectQuery)
+    fun getUserName() : User{
+        val db = this.writableDatabase
+        val user = User()
+        val selectQuery = "SELECT * FROM $USER_TABLE_NAME WHERE $COL_USER_ID = 1"
         val cursor = db.rawQuery(selectQuery, null)
-        if(cursor != null){
-            cursor.moveToFirst()
-            val name = cursor.getString(cursor.getColumnIndex(COL_USER_NAME))
-            println(name)
-            return name
+        if(cursor!=null && cursor.moveToFirst()){
+            user.id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_USER_ID)))
+            user.username = cursor.getString(cursor.getColumnIndex(COL_USER_NAME))
+            user.bronze = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_BRONZE)))
+            user.silver = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_SILVER)))
+            user.gold = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_GOLD)))
+            user.platinum = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_PLATINUM)))
+            user.diamond = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_DIAMOND)))
+            user.bosshp = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_BOSS_HP)))
         }
-        return "null"
+        cursor.close()
+        return user
+    }
+
+    fun updateCups(cup : String){
+        val db = this.writableDatabase
+        if(cup.equals("bronze")){
+
+        }
+        if(cup.equals("silver")){
+
+        }
+        if(cup.equals("gold")){
+
+        }
+        if(cup.equals("platinum")){
+
+        }
+        if(cup.equals("diamond")){
+
+        }
     }
 }

@@ -16,7 +16,7 @@ class ChooseNameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_choosename)
         db = DBHelper(this)
         if(db.checkIfUserIsAvailable()){
-            println(db.getUserName())
+            //println(db.getUserName().username)
             val intent = Intent(this, ChooseModusActivity::class.java)
             startActivity(intent)
         }
