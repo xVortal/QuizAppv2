@@ -20,6 +20,9 @@ class ChooseNameActivity : AppCompatActivity() {
             val intent = Intent(this, ChooseModusActivity::class.java)
             startActivity(intent)
         }
+
+        db.fillItemTable()
+        db.fillUserItemsTable()
         db.cleanDatabase()
 
         db.fillQuestionsTable()

@@ -36,6 +36,7 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
         private val COL_ITEM_ID = "ItemID"
         private val COL_ITEM_NAME = "ItemName"
         private val COL_ITEM_EFFEKT = "ItemEffekt"
+        private val COL_ITEM_TIER = "ItemTier"
 
         private val USER_ITEM_TABLE_NAME = "UserItem"
       //  private val COL_USER_ID_USER_ITEM = "UserID"
@@ -57,7 +58,7 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
                 "$COL_BRONZE INTEGER, $COL_SILVER INTEGER, $COL_GOLD INTEGER, $COL_PLATINUM INTEGER, $COL_DIAMOND INTEGER, $COL_BOSS_HP INTEGER)")
         db!!.execSQL(CREATE_TABLE_QUERY_USER)
         val CREATE_TABLE_QUERY_ITEM: String = ("CREATE TABLE $ITEM_TABLE_NAME ($COL_ITEM_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_ITEM_NAME TEXT," +
-                "$COL_ITEM_EFFEKT TEXT)")
+                "$COL_ITEM_EFFEKT TEXT, $COL_ITEM_TIER INTEGER)")
         db!!.execSQL(CREATE_TABLE_QUERY_ITEM)
         val CREATE_TABLE_QUERY_USER_ITEM: String = ("CREATE TABLE $USER_ITEM_TABLE_NAME ($COL_ITEM_ID INTEGER," +
                 "$COL_USER_ID INTEGER, $COL_ANZAHL_USER_ITEM INTEGER, PRIMARY KEY($COL_USER_ID, $COL_ITEM_ID))")
@@ -265,5 +266,62 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
         if(cup.equals("diamond")){
 
         }
+    }
+
+    fun insertItems(item: Item){
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put(COL_ITEM_ID, item.id)
+        values.put(COL_ITEM_NAME, item.itemname)
+        values.put(COL_ITEM_EFFEKT, item.itemeffekt)
+        values.put(COL_ITEM_TIER, item.itemtier)
+
+        db.insert(ITEM_TABLE_NAME, null, values)
+        db.close()
+    }
+
+    private fun addToItemList(id: Int, itemname: String, itemeffekt: String, tier: Int){
+        val items = Item(id, itemname, itemeffekt, tier)
+        insertItems(items)
+    }
+
+    fun fillItemTable(){
+        addToItemList(1,"Vitalitätsspritze","erhöht mac leben um 10", 1)
+        addToItemList(2,"Vitalitätshelm","erhöht max leben um 20", 2)
+        addToItemList(3,"Vitalitätsrüstung","erhöht max leben um 30", 3)
+        addToItemList(4,"Holzschild","reduziere den Schaden, den man erleidet um 1", 1)
+        addToItemList(5,"Schutzhelm","reduziere den Schaden, den man erleidet um 2", 2)
+        addToItemList(6,"Edelrüstung","reduziere den Schaden, den man erleidet um 3", 3)
+        addToItemList(7,"Holzschwert","erhöhe den Schaden um 1", 1)
+        addToItemList(8,"Eisenschwert","erhöhe den Schaden um 2", 2)
+        addToItemList(9,"Goldschwert","erhöhe den Schaden um 3",3)
+    }
+
+    fun insertUserItems(useritems: UserItem){
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put(COL_ITEM_ID, useritems.itemid)
+        values.put(COL_USER_ID, useritems.userid)
+        values.put(COL_ANZAHL_USER_ITEM, useritems.anzahl)
+
+        db.insert(USER_ITEM_TABLE_NAME, null, values)
+        db.close()
+    }
+
+    fun addToUserItems(itemid : Int, userid: Int, anzahl: Int){
+        val useritems = UserItem(itemid, userid, anzahl)
+        insertUserItems(useritems)
+    }
+
+    fun fillUserItemsTable(){
+        addToUserItems(1,1, 0)
+        addToUserItems(2,1, 0)
+        addToUserItems(3,1, 0)
+        addToUserItems(4,1, 0)
+        addToUserItems(5,1, 0)
+        addToUserItems(6,1, 0)
+        addToUserItems(7,1, 0)
+        addToUserItems(8,1, 0)
+        addToUserItems(9,1, 0)
     }
 }
