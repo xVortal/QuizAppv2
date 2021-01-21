@@ -7,31 +7,8 @@
     tools:context=".ChooseModusActivity"
     android:background="@drawable/bildschirmhintergrund">
 
-    <Button
-        android:id="@+id/Testmodusbtn"
-        android:layout_width="335dp"
-        android:layout_height="85dp"
-        android:text="Testmodus"
-        android:background = "@drawable/rounded_button_corners"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Lernmodusbtn" />
-
-    <Button
-        android:id="@+id/Lernmodusbtn"
-        android:layout_width="335dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/rounded_button_corners"
-        android:text="Lernmodus"
-        app:layout_constraintBottom_toTopOf="@+id/Testmodusbtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewName"
         android:layout_width="336dp"
         android:layout_height="200dp"
         android:layout_marginStart="8dp"
@@ -41,11 +18,33 @@
         android:layout_marginRight="8dp"
         android:background="@drawable/rounded_textview_corner"
         android:gravity="center"
-        android:text="Quizify"
+        android:text="Wie heißen Sie?"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="335dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/enterName"
+        android:background="@drawable/rounded_button_corners"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewName"/>
+
+    <Button
+        android:id="@+id/enterName"
+        android:layout_width="335dp"
+        android:layout_height="85dp"
+        android:text="Enter Name"
+        android:background = "@drawable/rounded_button_corners"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -104,7 +104,28 @@
         android:backgroundTint="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Status"
+        app:layout_constraintTop_toBottomOf="@+id/imageCup"
         app:srcCompat="@drawable/baseline_home_black_18" />
+
+    <ImageView
+        android:id="@+id/imageCup"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        app:srcCompat="@drawable/bronze_cup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Status" />
+       <!-- tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="305dp"-->
+
+    <TextView
+        android:id="@+id/textCup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:text="Bronze"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageCup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

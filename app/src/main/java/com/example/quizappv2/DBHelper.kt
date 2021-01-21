@@ -5,13 +5,14 @@ import android.content.Context
 import android.database.DatabaseUtils
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.text.Editable
 
 class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null, DATABASE_VER){
     companion object{
-        private val DATABASE_VER = 1
+        private val DATABASE_VER = 2
         private val DATABASE_NAME = "QUIZAPPV2.db"
 
-        private val TABLE_NAME = "Qusetion"
+        private val TABLE_NAME = "Question"
         private val COL_ID = "Id"
         private val COL_QUESTION = "Question"
         private val COL_ANSWERA = "AnswerA"
@@ -20,18 +21,58 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
         private val COL_ANSWERD = "AnswerD"
         private val COL_CORRECTANSWER = "CorrectAnswerA"
         private val COL_DIFFICULTY = "Difficulty"
+
+        private val USER_TABLE_NAME = "Users"
+        private val COL_USER_ID = "UserID"
+        private val COL_USER_NAME = "UserName"
+        private val COL_BRONZE = "BRONZE"
+        private val COL_SILVER = "SILVER"
+        private val COL_GOLD = "GOLD"
+        private val COL_PLATINUM = "PLATINUM"
+        private val COL_DIAMOND = "DIAMOND"
+        private val COL_BOSS_HP = "BossHP"
+
+        private val ITEM_TABLE_NAME = "Items"
+        private val COL_ITEM_ID = "ItemID"
+        private val COL_ITEM_NAME = "ItemName"
+        private val COL_ITEM_EFFEKT = "ItemEffekt"
+        private val COL_ITEM_TIER = "ItemTier"
+
+        private val USER_ITEM_TABLE_NAME = "UserItem"
+      //  private val COL_USER_ID_USER_ITEM = "UserID"
+      //  private val COL_ITEM_ID_USER_ITEM = "ItemID"
+        private val COL_ANZAHL_USER_ITEM = "AnzahlItem"
     }
+
 
     override fun onCreate(db: SQLiteDatabase?) {
         //db!!.execSQL("SELECT * FROM $TABLE_NAME")
         db!!.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
+        db!!.execSQL("DROP TABLE IF EXISTS $USER_TABLE_NAME")
+        db!!.execSQL("DROP TABLE IF EXISTS $ITEM_TABLE_NAME")
+        db!!.execSQL("DROP TABLE IF EXISTS $USER_ITEM_TABLE_NAME")
         val CREATE_TABLE_QUERY: String = ("CREATE TABLE $TABLE_NAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_QUESTION TEXT," +
                 "$COL_ANSWERA TEXT, $COL_ANSWERB TEXT, $COL_ANSWERC TEXT, $COL_ANSWERD TEXT, $COL_CORRECTANSWER TEXT, $COL_DIFFICULTY TEXT)")
         db!!.execSQL(CREATE_TABLE_QUERY)
+        val CREATE_TABLE_QUERY_USER: String = ("CREATE TABLE $USER_TABLE_NAME ($COL_USER_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_USER_NAME TEXT," +
+                "$COL_BRONZE INTEGER, $COL_SILVER INTEGER, $COL_GOLD INTEGER, $COL_PLATINUM INTEGER, $COL_DIAMOND INTEGER, $COL_BOSS_HP INTEGER)")
+        db!!.execSQL(CREATE_TABLE_QUERY_USER)
+        val CREATE_TABLE_QUERY_ITEM: String = ("CREATE TABLE $ITEM_TABLE_NAME ($COL_ITEM_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_ITEM_NAME TEXT," +
+                "$COL_ITEM_EFFEKT TEXT, $COL_ITEM_TIER INTEGER)")
+        db!!.execSQL(CREATE_TABLE_QUERY_ITEM)
+        val CREATE_TABLE_QUERY_USER_ITEM: String = ("CREATE TABLE $USER_ITEM_TABLE_NAME ($COL_ITEM_ID INTEGER," +
+                "$COL_USER_ID INTEGER, $COL_ANZAHL_USER_ITEM INTEGER, PRIMARY KEY($COL_USER_ID, $COL_ITEM_ID))")
+        db!!.execSQL(CREATE_TABLE_QUERY_USER_ITEM)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db!!.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
+        onCreate(db!!)
+        db!!.execSQL("DROP TABLE IF EXISTS $USER_TABLE_NAME")
+        onCreate(db!!)
+        db!!.execSQL("DROP TABLE IF EXISTS $ITEM_TABLE_NAME")
+        onCreate(db!!)
+        db!!.execSQL("DROP TABLE IF EXISTS $USER_ITEM_TABLE_NAME")
         onCreate(db!!)
     }
 
@@ -152,5 +193,146 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
         db.execSQL("DELETE FROM " + TABLE_NAME)
         db.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE name = '"+ TABLE_NAME +"'")
 
+    }
+
+    fun addUserToUserTable(name: String){
+        val db = this.writableDatabase
+        val values = ContentValues()
+        //values.put(COL_USER_ID, 1)
+        values.put(COL_USER_NAME, name)
+        values.put(COL_BRONZE, 0)
+        values.put(COL_SILVER, 0)
+        values.put(COL_GOLD, 0)
+        values.put(COL_PLATINUM, 0)
+        values.put(COL_DIAMOND, 0)
+        values.put(COL_BOSS_HP, 0)
+
+        db.insert(USER_TABLE_NAME, null, values)
+    }
+
+    fun deleteDataFromUserTable(){
+        val db = this.writableDatabase
+        db.execSQL("DELETE FROM " + USER_TABLE_NAME)
+        db.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE name = '"+ USER_TABLE_NAME +"'")
+    }
+
+    fun checkIfUserIsAvailable(): Boolean{
+        val db = this.readableDatabase
+        var available : Boolean
+        available = false
+        val selectQuery = "SELECT * FROM $USER_TABLE_NAME WHERE $COL_USER_ID = 1;"
+        println(selectQuery)
+        val cursor = db.rawQuery(selectQuery,null)
+        if (cursor != null && cursor.moveToFirst()){
+            available = true
+        }
+        cursor.close()
+        return available
+    }
+
+    fun getUserName() : User{
+        val db = this.writableDatabase
+        val user = User()
+        val selectQuery = "SELECT * FROM $USER_TABLE_NAME WHERE $COL_USER_ID = 1"
+        val cursor = db.rawQuery(selectQuery, null)
+        if(cursor!=null && cursor.moveToFirst()){
+            user.id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_USER_ID)))
+            user.username = cursor.getString(cursor.getColumnIndex(COL_USER_NAME))
+            user.bronze = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_BRONZE)))
+            user.silver = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_SILVER)))
+            user.gold = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_GOLD)))
+            user.platinum = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_PLATINUM)))
+            user.diamond = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_DIAMOND)))
+            user.bosshp = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_BOSS_HP)))
+        }
+        cursor.close()
+        return user
+    }
+
+    fun updateCups(cup : String){
+        val db = this.writableDatabase
+        var cupCount = 0
+        if(cup.equals("bronze")){
+            cupCount = getUserName().bronze + 1
+            val sql = "UPDATE $USER_TABLE_NAME SET $COL_BRONZE = " + cupCount +" WHERE $COL_USER_ID = 1"
+            db!!.execSQL(sql)
+        }
+        if(cup.equals("silver")){
+            cupCount = getUserName().silver + 1
+            val sql = "UPDATE $USER_TABLE_NAME SET $COL_SILVER = " + cupCount +" WHERE $COL_USER_ID = 1"
+            db!!.execSQL(sql)
+        }
+        if(cup.equals("gold")){
+            cupCount = getUserName().gold + 1
+            val sql = "UPDATE $USER_TABLE_NAME SET $COL_GOLD = " + cupCount +" WHERE $COL_USER_ID = 1"
+            db!!.execSQL(sql)
+        }
+        if(cup.equals("platinum")){
+            cupCount = getUserName().platinum + 1
+            val sql = "UPDATE $USER_TABLE_NAME SET $COL_PLATINUM = " + cupCount +" WHERE $COL_USER_ID = 1"
+            db!!.execSQL(sql)
+        }
+        if(cup.equals("diamond")){
+            cupCount = getUserName().diamond + 1
+            val sql = "UPDATE $USER_TABLE_NAME SET $COL_DIAMOND = " + cupCount +" WHERE $COL_USER_ID = 1"
+            db!!.execSQL(sql)
+        }
+    }
+
+    fun insertItems(item: Item){
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put(COL_ITEM_ID, item.id)
+        values.put(COL_ITEM_NAME, item.itemname)
+        values.put(COL_ITEM_EFFEKT, item.itemeffekt)
+        values.put(COL_ITEM_TIER, item.itemtier)
+
+        db.insert(ITEM_TABLE_NAME, null, values)
+        db.close()
+    }
+
+    private fun addToItemList(id: Int, itemname: String, itemeffekt: String, tier: Int){
+        val items = Item(id, itemname, itemeffekt, tier)
+        insertItems(items)
+    }
+
+    fun fillItemTable(){
+        addToItemList(1,"Vitalitätsspritze","erhöht max leben um 10", 1)
+        addToItemList(2,"Vitalitätshelm","erhöht max leben um 20", 2)
+        addToItemList(3,"Vitalitätsrüstung","erhöht max leben um 30", 3)
+        addToItemList(4,"Holzschild","reduziere den Schaden, den man erleidet um 1", 1)
+        addToItemList(5,"Schutzhelm","reduziere den Schaden, den man erleidet um 2", 2)
+        addToItemList(6,"Edelrüstung","reduziere den Schaden, den man erleidet um 3", 3)
+        addToItemList(7,"Holzschwert","erhöhe den Schaden um 1", 1)
+        addToItemList(8,"Eisenschwert","erhöhe den Schaden um 2", 2)
+        addToItemList(9,"Goldschwert","erhöhe den Schaden um 3",3)
+    }
+
+    fun insertUserItems(useritems: UserItem){
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put(COL_ITEM_ID, useritems.itemid)
+        values.put(COL_USER_ID, useritems.userid)
+        values.put(COL_ANZAHL_USER_ITEM, useritems.anzahl)
+
+        db.insert(USER_ITEM_TABLE_NAME, null, values)
+        db.close()
+    }
+
+    fun addToUserItems(itemid : Int, userid: Int, anzahl: Int){
+        val useritems = UserItem(itemid, userid, anzahl)
+        insertUserItems(useritems)
+    }
+
+    fun fillUserItemsTable(){
+        addToUserItems(1,1, 0)
+        addToUserItems(2,1, 0)
+        addToUserItems(3,1, 0)
+        addToUserItems(4,1, 0)
+        addToUserItems(5,1, 0)
+        addToUserItems(6,1, 0)
+        addToUserItems(7,1, 0)
+        addToUserItems(8,1, 0)
+        addToUserItems(9,1, 0)
     }
 }

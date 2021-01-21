@@ -4,34 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChooseModusActivity"
+    tools:context=".MenuActivity"
     android:background="@drawable/bildschirmhintergrund">
 
     <Button
-        android:id="@+id/Testmodusbtn"
+        android:id="@+id/Cups"
         android:layout_width="335dp"
         android:layout_height="85dp"
-        android:text="Testmodus"
+        android:text="Cups"
         android:background = "@drawable/rounded_button_corners"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Lernmodusbtn" />
+        app:layout_constraintTop_toBottomOf="@+id/Quiz" />
 
     <Button
-        android:id="@+id/Lernmodusbtn"
+        android:id="@+id/Quiz"
         android:layout_width="335dp"
         android:layout_height="85dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/rounded_button_corners"
-        android:text="Lernmodus"
-        app:layout_constraintBottom_toTopOf="@+id/Testmodusbtn"
+        android:text="Quiz"
+        app:layout_constraintBottom_toTopOf="@+id/Cups"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/Boss"
+        android:layout_width="335dp"
+        android:layout_height="85dp"
+        android:text="Fight Boss"
+        android:background = "@drawable/rounded_button_corners"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Cups" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView"
         android:layout_width="336dp"
         android:layout_height="200dp"
         android:layout_marginStart="8dp"

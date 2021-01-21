@@ -2,6 +2,7 @@ package com.example.quizappv2
 
 import android.content.Intent
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
@@ -22,10 +23,11 @@ class MainTestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_test)
 
+        //diese 3 Funktionen für geamification ausgeschaltet
         db = DBHelper(this)
-        db.cleanDatabase()
+      //  db.cleanDatabase()
 
-        db.fillQuestionsTable()
+      //  db.fillQuestionsTable()
 
 
         if(getIntent().getIntExtra("lvl", 0) == 2) {
@@ -74,11 +76,13 @@ class MainTestActivity : AppCompatActivity() {
 
     private fun defineButtons(){
         disableNextButton()
+        var mp = MediaPlayer.create(this, R.raw.richtig)
         val answerABtn = findViewById<Button>(R.id.AnswerABtn)
         answerABtn.setOnClickListener{
             if(answerABtn.getText().equals(correct)){
                 answerABtn.setBackgroundColor(Color.parseColor("#5cbd28"))
                 disableButton()
+                mp.start()
             } else {
                 answerABtn.setBackgroundColor(Color.parseColor("#c91616"))
                 showRightAnswer();
@@ -90,6 +94,7 @@ class MainTestActivity : AppCompatActivity() {
             if(answerBBtn.getText().equals(correct)){
                 answerBBtn.setBackgroundColor(Color.parseColor("#5cbd28"))
                 disableButton()
+                mp.start()
             } else {
                 answerBBtn.setBackgroundColor(Color.parseColor("#c91616"))
                 showRightAnswer();
@@ -101,6 +106,7 @@ class MainTestActivity : AppCompatActivity() {
             if(answerCBtn.getText().equals(correct)){
                 answerCBtn.setBackgroundColor(Color.parseColor("#5cbd28"))
                 disableButton()
+                mp.start()
             } else {
                 answerCBtn.setBackgroundColor(Color.parseColor("#c91616"))
                 showRightAnswer();
@@ -112,6 +118,7 @@ class MainTestActivity : AppCompatActivity() {
             if(answerDBtn.getText().equals(correct)){
                 answerDBtn.setBackgroundColor(Color.parseColor("#5cbd28"))
                 disableButton()
+                mp.start()
             }
             if(!answerDBtn.getText().equals(correct)){
                 answerDBtn.setBackgroundColor(Color.parseColor("#c91616"))
@@ -198,7 +205,7 @@ class MainTestActivity : AppCompatActivity() {
     private fun defineHomeButton(){
         val homebutton = findViewById<ImageButton>(R.id.home)
         homebutton.setOnClickListener{
-            val intent = Intent(this, ChooseModusActivity::class.java)
+            val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
         }
     }
