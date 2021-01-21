@@ -297,7 +297,7 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
     }
 
     fun fillItemTable(){
-        addToItemList(1,"Vitalitätsspritze","erhöht mac leben um 10", 1)
+        addToItemList(1,"Vitalitätsspritze","erhöht max leben um 10", 1)
         addToItemList(2,"Vitalitätshelm","erhöht max leben um 20", 2)
         addToItemList(3,"Vitalitätsrüstung","erhöht max leben um 30", 3)
         addToItemList(4,"Holzschild","reduziere den Schaden, den man erleidet um 1", 1)

@@ -28,7 +28,7 @@ class StatisticView : AppCompatActivity() {
     private fun defineHomeButton(){
         val homebutton = findViewById<ImageButton>(R.id.home)
         homebutton.setOnClickListener{
-            val intent = Intent(this, ChooseModusActivity::class.java)
+            val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
         }
     }
@@ -79,7 +79,7 @@ class StatisticView : AppCompatActivity() {
 
     private fun definePassOrNotPassed(){
         val passOrNotPassed = findViewById<TextView>(R.id.Status)
-        if(getRightAnswerProcent().toFloat() > 80){
+        if(getRightAnswerProcent().toFloat() >= 50){
             var mp = MediaPlayer.create(this, R.raw.bestanden)
             mp.start()
             passOrNotPassed.setText("bestanden")

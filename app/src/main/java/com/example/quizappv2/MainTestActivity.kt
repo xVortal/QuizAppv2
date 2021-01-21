@@ -205,7 +205,7 @@ class MainTestActivity : AppCompatActivity() {
     private fun defineHomeButton(){
         val homebutton = findViewById<ImageButton>(R.id.home)
         homebutton.setOnClickListener{
-            val intent = Intent(this, ChooseModusActivity::class.java)
+            val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
         }
     }
