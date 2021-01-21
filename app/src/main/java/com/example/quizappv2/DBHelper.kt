@@ -251,20 +251,31 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
 
     fun updateCups(cup : String){
         val db = this.writableDatabase
+        var cupCount = 0
         if(cup.equals("bronze")){
-
+            cupCount = getUserName().bronze + 1
+            val sql = "UPDATE $USER_TABLE_NAME SET $COL_BRONZE = " + cupCount +" WHERE $COL_USER_ID = 1"
+            db!!.execSQL(sql)
         }
         if(cup.equals("silver")){
-
+            cupCount = getUserName().silver + 1
+            val sql = "UPDATE $USER_TABLE_NAME SET $COL_SILVER = " + cupCount +" WHERE $COL_USER_ID = 1"
+            db!!.execSQL(sql)
         }
         if(cup.equals("gold")){
-
+            cupCount = getUserName().gold + 1
+            val sql = "UPDATE $USER_TABLE_NAME SET $COL_GOLD = " + cupCount +" WHERE $COL_USER_ID = 1"
+            db!!.execSQL(sql)
         }
         if(cup.equals("platinum")){
-
+            cupCount = getUserName().platinum + 1
+            val sql = "UPDATE $USER_TABLE_NAME SET $COL_PLATINUM = " + cupCount +" WHERE $COL_USER_ID = 1"
+            db!!.execSQL(sql)
         }
         if(cup.equals("diamond")){
-
+            cupCount = getUserName().diamond + 1
+            val sql = "UPDATE $USER_TABLE_NAME SET $COL_DIAMOND = " + cupCount +" WHERE $COL_USER_ID = 1"
+            db!!.execSQL(sql)
         }
     }
 

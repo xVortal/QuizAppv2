@@ -17,7 +17,7 @@ class ChooseNameActivity : AppCompatActivity() {
         db = DBHelper(this)
         if(db.checkIfUserIsAvailable()){
             //println(db.getUserName().username)
-            val intent = Intent(this, ChooseModusActivity::class.java)
+            val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
         }
 
@@ -31,11 +31,11 @@ class ChooseNameActivity : AppCompatActivity() {
 
     private fun defineButton(){
         val inputName = findViewById<EditText>(R.id.userName)
-        db.deleteDataFromUserTable()
+        //db.deleteDataFromUserTable()
         val enterName = findViewById<Button>(R.id.enterName)
         enterName.setOnClickListener {
             db.addUserToUserTable(inputName.getText().toString())
-            val intent = Intent(this, ChooseModusActivity::class.java)
+            val intent = Intent(this, MenuActivity::class.java)
             intent.putExtra("inputName", inputName.getText().toString())
             startActivity(intent)
         }

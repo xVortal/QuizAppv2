@@ -7,17 +7,22 @@ import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_statistic.*
 import java.text.DecimalFormat
 
 class StatisticView : AppCompatActivity() {
 
+    internal lateinit var db:DBHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_statistic)
+        db = DBHelper(this)
         setTextViewProcent()
         defineProgressBar()
         definePassOrNotPassed()
         defineHomeButton()
+        setCup()
     }
 
     private fun defineHomeButton(){
@@ -55,6 +60,7 @@ class StatisticView : AppCompatActivity() {
 
         var rightanswerprocent : Float = (((20 - getIntent().getIntExtra("WAC", 0).toFloat()) / 20) * 100)
         println("richtige Antwort Prozent: " + rightanswerprocent)
+        println("richitge Antwort Prozent: " + f.format(rightanswerprocent))
         return f.format(rightanswerprocent)
     }
 
@@ -81,5 +87,36 @@ class StatisticView : AppCompatActivity() {
             passOrNotPassed.setText("nicht bestanden")
         }
     }
+
+    private fun setCup(){
+        var procentPoints = getRightAnswerProcent().toFloat()
+        if(procentPoints >= 50.0.toFloat() && procentPoints < 70.0.toFloat()){
+            imageCup.setImageResource(R.drawable.bronze_cup)
+            textCup.setText("Bronze")
+            db.updateCups("bronze")
+        }
+        if(procentPoints >= 70.0.toFloat() && procentPoints < 90.0.toFloat()){
+            imageCup.setImageResource(R.drawable.silver_cup)
+            textCup.setText("Silver")
+            db.updateCups("silver")
+        }
+        if(procentPoints >= 90.0.toFloat() && procentPoints < 95.0.toFloat()){
+            imageCup.setImageResource(R.drawable.gold_cup)
+            textCup.setText("Gold")
+            db.updateCups("gold")
+        }
+        if(procentPoints >= 95.0.toFloat() && procentPoints < 100.0.toFloat()){
+            imageCup.setImageResource(R.drawable.platinum_cup)
+            textCup.setText("Platinum")
+            db.updateCups("platinum")
+        }
+        if(procentPoints == 100.0.toFloat()){
+            imageCup.setImageResource(R.drawable.diamond_cup)
+            textCup.setText("Diamond")
+            db.updateCups("diamond")
+        }
+    }
+
+
 
 }
