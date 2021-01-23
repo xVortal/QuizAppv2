@@ -10,7 +10,7 @@ class BossFightActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cups)
+        setContentView(R.layout.activity_bossfight)
         db = DBHelper(this)
     }
 }
