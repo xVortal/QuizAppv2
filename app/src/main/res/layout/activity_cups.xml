@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bildschirmhintergrund"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/cupsView"
+        android:layout_width="336dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/rounded_textview_corner"
+        android:gravity="center"
+        android:text="Das sind die verdienten Pokale!"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/PlatinumCup"
+        android:layout_width="70dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="23dp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeMinTextSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/GoldCup"
+        app:layout_constraintTop_toBottomOf="@+id/textCupSilver"
+        app:layout_constraintBottom_toTopOf="@+id/textCupPlatinum"
+        app:srcCompat="@drawable/platinum_cup" />
+
+    <TextView
+        android:id="@+id/textCupPlatinum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Platinum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.726"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PlatinumCup" />
+
+    <ImageView
+        android:id="@+id/GoldCup"
+        android:layout_width="70dp"
+        android:layout_height="90dp"
+        app:srcCompat="@drawable/gold_cup"
+        android:layout_marginTop="23dp"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeMaxTextSize="100sp"
+        app:layout_constraintEnd_toStartOf="@+id/PlatinumCup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textCupBronze" />
+
+    <TextView
+        android:id="@+id/textCupGold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Gold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/GoldCup"
+        app:layout_constraintEnd_toStartOf="@+id/PlatinumCup" />
+
+    <ImageView
+        android:id="@+id/BronzeCup"
+        android:layout_width="70dp"
+        android:layout_height="90dp"
+        app:srcCompat="@drawable/bronze_cup"
+        android:layout_marginTop="23dp"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeMaxTextSize="100sp"
+        app:layout_constraintEnd_toStartOf="@+id/SilverCup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cupsView" />
+
+    <TextView
+        android:id="@+id/textCupBronze"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Bronze"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BronzeCup"
+        app:layout_constraintEnd_toStartOf="@+id/SilverCup" />
+
+    <ImageView
+        android:id="@+id/SilverCup"
+        android:layout_width="70dp"
+        android:layout_height="90dp"
+        app:srcCompat="@drawable/silver_cup"
+        android:layout_marginTop="23dp"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeMaxTextSize="100sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/BronzeCup"
+        app:layout_constraintTop_toBottomOf="@+id/cupsView" />
+
+    <TextView
+        android:id="@+id/textCupSilver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Silver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.724"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SilverCup" />
+
+    <ImageView
+        android:id="@+id/DiamondCup"
+        android:layout_width="70dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginLeft="168dp"
+        android:layout_marginTop="300dp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeMinTextSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cupsView"
+        app:srcCompat="@drawable/diamond_cup" />
+
+    <TextView
+        android:id="@+id/textCupDiamond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Diamond"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DiamondCup" />
+
+    <ImageButton
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#0693D6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textCupDiamond"
+        app:srcCompat="@drawable/baseline_home_black_18" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

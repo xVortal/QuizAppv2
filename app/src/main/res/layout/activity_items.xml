@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bildschirmhintergrund"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/item1"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="10dp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeMinTextSize="12sp"
+        app:srcCompat="@drawable/vitality_syringe"
+        android:background="@drawable/rounded_button_corners"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/item1NameText"
+        app:layout_constraintEnd_toStartOf="@+id/item4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewItems" />
+
+    <TextView
+        android:id="@+id/item8EffektText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item8NameText" />
+
+    <TextView
+        android:id="@+id/item9NameText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item9" />
+
+    <TextView
+        android:id="@+id/item9EffektText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item9NameText" />
+
+    <TextView
+        android:id="@+id/item6EffektText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/item9EffektText"
+        app:layout_constraintStart_toEndOf="@+id/item3EffektText"
+        app:layout_constraintTop_toBottomOf="@+id/item6NameText" />
+
+    <TextView
+        android:id="@+id/item5EffektText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/item8EffektText"
+        app:layout_constraintStart_toEndOf="@+id/item2EffektText"
+        app:layout_constraintTop_toBottomOf="@+id/item5NameText" />
+
+    <TextView
+        android:id="@+id/textViewItems"
+        android:layout_width="336dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/rounded_textview_corner"
+        android:gravity="center"
+        android:text="Hier sind deine gefundenen Items"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeMaxTextSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/item2"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="20dp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeMinTextSize="12sp"
+        app:srcCompat="@drawable/vitality_helmet"
+        android:background="@drawable/rounded_button_corners"
+        android:gravity="center"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item1EffektText" />
+
+    <ImageView
+        android:id="@+id/item3"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="20dp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeMinTextSize="12sp"
+        app:srcCompat="@drawable/vitality_armor"
+        android:background="@drawable/rounded_button_corners"
+        android:gravity="center"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item2EffektText" />
+
+    <ImageView
+        android:id="@+id/item5"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeMinTextSize="12sp"
+        app:srcCompat="@drawable/protection_helmet"
+        android:background="@drawable/rounded_button_corners"
+        android:gravity="center"
+        android:text="Button"
+        app:layout_constraintEnd_toStartOf="@+id/item8"
+        app:layout_constraintStart_toEndOf="@+id/item2"
+        app:layout_constraintTop_toBottomOf="@+id/item4EffektText" />
+
+    <ImageView
+        android:id="@+id/item8"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeMinTextSize="12sp"
+        app:srcCompat="@drawable/iron_sword"
+        android:background="@drawable/rounded_button_corners"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item7EffektText" />
+
+    <TextView
+        android:id="@+id/item7NameText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item7" />
+
+    <TextView
+        android:id="@+id/item7EffektText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item7NameText" />
+
+    <TextView
+        android:id="@+id/item8NameText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item8" />
+
+    <ImageView
+        android:id="@+id/item6"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeMinTextSize="12sp"
+        app:srcCompat="@drawable/thorn_armor"
+        android:background="@drawable/rounded_button_corners"
+        android:text="Button"
+        app:layout_constraintEnd_toStartOf="@+id/item9"
+        app:layout_constraintStart_toEndOf="@+id/item3"
+        app:layout_constraintTop_toBottomOf="@+id/item5EffektText" />
+
+    <TextView
+        android:id="@+id/item6NameText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/item9NameText"
+        app:layout_constraintStart_toEndOf="@+id/item3NameText"
+        app:layout_constraintTop_toBottomOf="@+id/item6" />
+
+    <ImageView
+        android:id="@+id/item9"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeMinTextSize="12sp"
+        app:srcCompat="@drawable/gold_sword"
+        android:background="@drawable/rounded_button_corners"
+        android:gravity="center"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item8EffektText" />
+
+    <ImageView
+        android:id="@+id/item4"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginBottom="10dp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeMinTextSize="12sp"
+        app:srcCompat="@drawable/wood_shield"
+        android:background="@drawable/rounded_button_corners"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/item4NameText"
+        app:layout_constraintEnd_toStartOf="@+id/item7"
+        app:layout_constraintStart_toEndOf="@+id/item1"
+        app:layout_constraintTop_toBottomOf="@+id/textViewItems" />
+
+    <ImageView
+        android:id="@+id/item7"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginBottom="10dp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeMinTextSize="12sp"
+        app:srcCompat="@drawable/wood_sword"
+        android:background="@drawable/rounded_button_corners"
+        android:gravity="center"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/item7NameText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/item4"
+        app:layout_constraintTop_toBottomOf="@+id/textViewItems" />
+
+    <ImageButton
+        android:id="@+id/home"
+        android:layout_width="58dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:background="#0693D6"
+        android:backgroundTint="@android:color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_home_black_18" />
+
+    <TextView
+        android:id="@+id/item1NameText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/item4NameText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item1" />
+
+    <TextView
+        android:id="@+id/item1EffektText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item1NameText" />
+
+    <TextView
+        android:id="@+id/item2NameText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/item5NameText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item2" />
+
+    <TextView
+        android:id="@+id/item5NameText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/item8NameText"
+        app:layout_constraintStart_toEndOf="@+id/item2NameText"
+        app:layout_constraintTop_toBottomOf="@+id/item5" />
+
+    <TextView
+        android:id="@+id/item2EffektText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/item5EffektText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item2NameText" />
+
+    <TextView
+        android:id="@+id/item3NameText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item3" />
+
+    <TextView
+        android:id="@+id/item3EffektText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item3NameText" />
+
+    <TextView
+        android:id="@+id/item4NameText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/item7NameText"
+        app:layout_constraintStart_toEndOf="@+id/item1NameText"
+        app:layout_constraintTop_toBottomOf="@+id/item4" />
+
+    <TextView
+        android:id="@+id/item4EffektText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/item7EffektText"
+        app:layout_constraintStart_toEndOf="@+id/item1EffektText"
+        app:layout_constraintTop_toBottomOf="@+id/item4NameText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

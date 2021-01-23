@@ -19,6 +19,12 @@
         <activity android:name=".MenuActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".CupsViewActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ItemViewActivity"
+            android:screenOrientation="portrait">
+        </activity>
         <activity android:name=".ChooseModusActivity"
             android:screenOrientation="portrait">
         </activity>
