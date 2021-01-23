@@ -9,10 +9,11 @@ class User {
     var platinum : Int = 0
     var diamond : Int = 0
     var bosshp : Int = 0
+    var last_login : String ?= null
 
     constructor(){}
 
-    constructor(id: Int, username: String, bronze: Int, silver: Int, gold: Int, platinum: Int, diamond: Int, bosshp: Int)
+    constructor(id: Int, username: String, bronze: Int, silver: Int, gold: Int, platinum: Int, diamond: Int, bosshp: Int, last_login: String)
     {
         this.id = id
         this.username = username
@@ -22,5 +23,6 @@ class User {
         this.platinum = platinum
         this.diamond = diamond
         this.bosshp = bosshp
+        this.last_login = last_login
     }
 }

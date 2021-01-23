@@ -5,7 +5,11 @@ import android.content.Context
 import android.database.DatabaseUtils
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.os.Build
 import android.text.Editable
+import androidx.annotation.RequiresApi
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null, DATABASE_VER){
     companion object{
@@ -31,6 +35,7 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
         private val COL_PLATINUM = "PLATINUM"
         private val COL_DIAMOND = "DIAMOND"
         private val COL_BOSS_HP = "BossHP"
+        private val COL_USER_LAST_LOGIN = "LastLogin"
 
         private val ITEM_TABLE_NAME = "Items"
         private val COL_ITEM_ID = "ItemID"
@@ -55,7 +60,7 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
                 "$COL_ANSWERA TEXT, $COL_ANSWERB TEXT, $COL_ANSWERC TEXT, $COL_ANSWERD TEXT, $COL_CORRECTANSWER TEXT, $COL_DIFFICULTY TEXT)")
         db!!.execSQL(CREATE_TABLE_QUERY)
         val CREATE_TABLE_QUERY_USER: String = ("CREATE TABLE $USER_TABLE_NAME ($COL_USER_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_USER_NAME TEXT," +
-                "$COL_BRONZE INTEGER, $COL_SILVER INTEGER, $COL_GOLD INTEGER, $COL_PLATINUM INTEGER, $COL_DIAMOND INTEGER, $COL_BOSS_HP INTEGER)")
+                "$COL_BRONZE INTEGER, $COL_SILVER INTEGER, $COL_GOLD INTEGER, $COL_PLATINUM INTEGER, $COL_DIAMOND INTEGER, $COL_BOSS_HP INTEGER, $COL_USER_LAST_LOGIN TEXT)")
         db!!.execSQL(CREATE_TABLE_QUERY_USER)
         val CREATE_TABLE_QUERY_ITEM: String = ("CREATE TABLE $ITEM_TABLE_NAME ($COL_ITEM_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_ITEM_NAME TEXT," +
                 "$COL_ITEM_EFFEKT TEXT, $COL_ITEM_TIER INTEGER)")
@@ -195,7 +200,11 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun addUserToUserTable(name: String){
+        var current = LocalDateTime.now()
+        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
+        var formated = current.format(formatter)
         val db = this.writableDatabase
         val values = ContentValues()
         //values.put(COL_USER_ID, 1)
@@ -206,6 +215,7 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
         values.put(COL_PLATINUM, 0)
         values.put(COL_DIAMOND, 0)
         values.put(COL_BOSS_HP, 0)
+        values.put(COL_USER_LAST_LOGIN, formated)
 
         db.insert(USER_TABLE_NAME, null, values)
     }
@@ -244,6 +254,7 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
             user.platinum = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_PLATINUM)))
             user.diamond = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_DIAMOND)))
             user.bosshp = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_BOSS_HP)))
+            user.last_login = cursor.getString(cursor.getColumnIndex(COL_USER_LAST_LOGIN))
         }
         cursor.close()
         return user
