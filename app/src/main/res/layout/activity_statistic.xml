@@ -128,4 +128,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageCup" />
 
+    <TextView
+        android:id="@+id/itemsWonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:text="Item you won:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textCup" />
+
+    <ImageView
+        android:id="@+id/itemwon"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="23dp"
+        app:srcCompat="@drawable/bronze_cup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemsWonText" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

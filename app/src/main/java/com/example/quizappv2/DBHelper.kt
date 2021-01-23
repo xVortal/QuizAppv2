@@ -364,4 +364,26 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
         cursor.close()
         return useritem
     }
+
+    fun getRandomItemFromTier(tier:Int) : Item{
+        val db = this.writableDatabase
+        val item = Item()
+        val selectQuery = "SELECT * FROM $ITEM_TABLE_NAME WHERE $COL_ITEM_TIER = " + tier + " ORDER BY RANDOM() LIMIT 1"
+        val cursor = db.rawQuery(selectQuery, null)
+        if(cursor!=null && cursor.moveToFirst()){
+            item.id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_ITEM_ID)))
+            item.itemname = cursor.getString(cursor.getColumnIndex(COL_ITEM_NAME))
+            item.itemeffekt = cursor.getString(cursor.getColumnIndex(COL_ITEM_EFFEKT))
+            item.itemtier = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_ITEM_TIER)))
+        }
+        cursor.close()
+        return item
+    }
+
+    fun setItemCountForUserWithEndOfTest(id : Int){
+        val db = this.writableDatabase
+        var itemCount = getItemFromUserWithId(id).anzahl + 1
+        val sql = "UPDATE $USER_ITEM_TABLE_NAME SET $COL_ANZAHL_USER_ITEM = " + itemCount + " WHERE $COL_ITEM_ID = " + id
+        db!!.execSQL(sql)
+    }
 }

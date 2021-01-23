@@ -90,33 +90,70 @@ class StatisticView : AppCompatActivity() {
 
     private fun setCup(){
         var procentPoints = getRightAnswerProcent().toFloat()
+        var cup = ""
+        var tier = 0
         if(procentPoints >= 50.0.toFloat() && procentPoints < 70.0.toFloat()){
+            cup = "bronze"
+            tier = 1
             imageCup.setImageResource(R.drawable.bronze_cup)
             textCup.setText("Bronze")
-            db.updateCups("bronze")
         }
         if(procentPoints >= 70.0.toFloat() && procentPoints < 90.0.toFloat()){
+            cup = "silver"
+            tier = 1
             imageCup.setImageResource(R.drawable.silver_cup)
             textCup.setText("Silver")
-            db.updateCups("silver")
         }
         if(procentPoints >= 90.0.toFloat() && procentPoints < 95.0.toFloat()){
+            cup = "gold"
+            tier = 2
             imageCup.setImageResource(R.drawable.gold_cup)
             textCup.setText("Gold")
-            db.updateCups("gold")
         }
         if(procentPoints >= 95.0.toFloat() && procentPoints < 100.0.toFloat()){
+            cup = "platinum"
+            tier = 2
             imageCup.setImageResource(R.drawable.platinum_cup)
             textCup.setText("Platinum")
-            db.updateCups("platinum")
         }
         if(procentPoints == 100.0.toFloat()){
+            cup = "diamond"
+            tier = 3
             imageCup.setImageResource(R.drawable.diamond_cup)
             textCup.setText("Diamond")
-            db.updateCups("diamond")
         }
+        db.updateCups(cup)
+        setItemPicture(db.getRandomItemFromTier(tier).id)
     }
 
-
-
+    fun setItemPicture(id : Int){
+        if(id == 1){
+            itemwon.setImageResource(R.drawable.vitality_syringe)
+        }
+        if(id == 2){
+            itemwon.setImageResource(R.drawable.vitality_helmet)
+        }
+        if(id == 3){
+            itemwon.setImageResource(R.drawable.vitality_armor)
+        }
+        if(id == 4){
+            itemwon.setImageResource(R.drawable.wood_shield)
+        }
+        if(id == 5){
+            itemwon.setImageResource(R.drawable.protection_helmet)
+        }
+        if(id == 6){
+            itemwon.setImageResource(R.drawable.thorn_armor)
+        }
+        if(id == 7){
+            itemwon.setImageResource(R.drawable.wood_sword)
+        }
+        if(id == 8){
+            itemwon.setImageResource(R.drawable.iron_sword)
+        }
+        if(id == 9){
+            itemwon.setImageResource(R.drawable.gold_sword)
+        }
+        db.setItemCountForUserWithEndOfTest(id)
+    }
 }
