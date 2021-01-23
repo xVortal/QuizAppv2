@@ -17,6 +17,7 @@ class CupsViewActivity: AppCompatActivity() {
         db = DBHelper(this)
         defineHomeButton()
         getCupCounts()
+        setTextView()
     }
 
     private fun defineHomeButton(){

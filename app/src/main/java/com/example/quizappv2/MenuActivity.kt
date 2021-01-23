@@ -35,6 +35,12 @@ class MenuActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val itemBtn = findViewById<Button>(R.id.ItemView)
+        itemBtn.setOnClickListener{
+            val intent = Intent(this, ItemViewActivity::class.java)
+            startActivity(intent)
+        }
+
         val bossBtn = findViewById<Button>(R.id.Boss)
         bossBtn.setOnClickListener{
             val intent = Intent(this, ChooseModusActivity::class.java)
