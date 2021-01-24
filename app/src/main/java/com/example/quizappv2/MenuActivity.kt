@@ -43,7 +43,7 @@ class MenuActivity : AppCompatActivity() {
 
         val bossBtn = findViewById<Button>(R.id.Boss)
         bossBtn.setOnClickListener{
-            val intent = Intent(this, ChooseModusActivity::class.java)
+            val intent = Intent(this, BossFightActivity::class.java)
             startActivity(intent)
         }
 

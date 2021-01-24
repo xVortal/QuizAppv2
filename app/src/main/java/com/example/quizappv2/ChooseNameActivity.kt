@@ -1,9 +1,11 @@
 package com.example.quizappv2
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 
 class ChooseNameActivity : AppCompatActivity() {
@@ -11,6 +13,7 @@ class ChooseNameActivity : AppCompatActivity() {
     internal lateinit var db:DBHelper
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choosename)
@@ -29,6 +32,7 @@ class ChooseNameActivity : AppCompatActivity() {
         defineButton()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun defineButton(){
         val inputName = findViewById<EditText>(R.id.userName)
         //db.deleteDataFromUserTable()

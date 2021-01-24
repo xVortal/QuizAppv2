@@ -25,6 +25,9 @@
         <activity android:name=".ItemViewActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".BossFightActivity"
+            android:screenOrientation="portrait">
+        </activity>
         <activity android:name=".ChooseModusActivity"
             android:screenOrientation="portrait">
         </activity>
