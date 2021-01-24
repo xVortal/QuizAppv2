@@ -82,9 +82,9 @@ class StatisticView : AppCompatActivity() {
         if(getRightAnswerProcent().toFloat() >= 50){
             var mp = MediaPlayer.create(this, R.raw.bestanden)
             mp.start()
-            passOrNotPassed.setText("bestanden")
+            passOrNotPassed.setText("passed")
         } else {
-            passOrNotPassed.setText("nicht bestanden")
+            passOrNotPassed.setText("not passed")
         }
     }
 

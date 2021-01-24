@@ -8,7 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.os.Build
 import android.text.Editable
 import androidx.annotation.RequiresApi
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.Period
 import java.time.format.DateTimeFormatter
 
 class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null, DATABASE_VER){
@@ -202,8 +204,8 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun addUserToUserTable(name: String){
-        var current = LocalDateTime.now()
-        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
+        var current = LocalDate.now()
+        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")// HH:mm:ss.SSS")
         var formated = current.format(formatter)
         val db = this.writableDatabase
         val values = ContentValues()
@@ -218,6 +220,23 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
         values.put(COL_USER_LAST_LOGIN, formated)
 
         db.insert(USER_TABLE_NAME, null, values)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun updateLastLogin(){
+        var current = LocalDate.now()
+        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")// HH:mm:ss.SSS")
+        var formated = current.format(formatter)
+        val db = this.writableDatabase
+        val sql = "UPDATE $USER_TABLE_NAME SET $COL_USER_LAST_LOGIN = " + formated + " WHERE $COL_USER_ID = 1"
+        db!!.execSQL(sql)
+
+    }
+
+    fun updateBossHP(hp : Int){
+        val db = this.writableDatabase
+        val sql = "UPDATE $USER_TABLE_NAME SET $COL_BOSS_HP = " + hp + " WHERE $COL_USER_ID = 1"
+        db!!.execSQL(sql)
     }
 
     fun deleteDataFromUserTable(){
