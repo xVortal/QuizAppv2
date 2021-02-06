@@ -123,8 +123,11 @@ class StatisticView : AppCompatActivity() {
             imageCup.setImageResource(R.drawable.diamond_cup)
             textCup.setText("Diamond")
         }
-        db.updateCups(cup)
-        setItemPicture(db.getRandomItemFromTier(tier).id)
+        tier = getRandomItemTierForCup(cup)
+        if(tier != 0){
+            db.updateCups(cup)
+            setItemPicture(db.getRandomItemFromTier(tier).id)
+        }
     }
 
     fun setItemPicture(id : Int){
@@ -165,5 +168,33 @@ class StatisticView : AppCompatActivity() {
         var difference = (getRightAnswerCount().toInt()*4) - (getWrongAnswerCount().toInt()*2)
         var newbosshp = db.getUserName().bosshp - difference
         db.updateBossHP(newbosshp)
+    }
+
+    private fun getRandomItemTierForCup(cup : String) : Int {
+        var rnds = (0..1).random()
+        if (cup.equals("bronze")) {
+            return 1
+        }
+        if (cup.equals("silver")) {
+            if (rnds == 1) {
+                return 1
+            } else {
+                return 2
+            }
+        }
+        if (cup.equals("gold")) {
+            return 2
+        }
+        if (cup.equals("platinum")) {
+            if (rnds == 1) {
+                return 2
+            } else {
+                return 3
+            }
+        }
+        if (cup.equals("diamond")) {
+            return 3
+        }
+        return 0
     }
 }

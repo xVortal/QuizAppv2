@@ -73,11 +73,11 @@ class MainActivity : AppCompatActivity() {
         var mp = MediaPlayer.create(this, R.raw.richtig)
         answerABtn.setOnClickListener{
             if(answerABtn.getText().equals(correct)){
-                answerABtn.setBackgroundColor(Color.parseColor("#5cbd28"))
+                answerABtn.setBackgroundResource(R.drawable.rounded_right_answer)
                 mp.start()
                 disableButton()
             } else {
-                answerABtn.setBackgroundColor(Color.parseColor("#c91616"))
+                answerABtn.setBackgroundResource(R.drawable.rounded_wrong_answer)
                 showRightAnswer();
             }
 
@@ -85,11 +85,11 @@ class MainActivity : AppCompatActivity() {
         val answerBBtn = findViewById<Button>(R.id.AnswerBBtn)
         answerBBtn.setOnClickListener{
             if(answerBBtn.getText().equals(correct)){
-                answerBBtn.setBackgroundColor(Color.parseColor("#5cbd28"))
+                answerBBtn.setBackgroundResource(R.drawable.rounded_right_answer)
                 mp.start()
                 disableButton()
             } else {
-                answerBBtn.setBackgroundColor(Color.parseColor("#c91616"))
+                answerBBtn.setBackgroundResource(R.drawable.rounded_wrong_answer)
                 showRightAnswer();
             }
 
@@ -97,11 +97,11 @@ class MainActivity : AppCompatActivity() {
         val answerCBtn = findViewById<Button>(R.id.AnswerCBtn)
         answerCBtn.setOnClickListener{
             if(answerCBtn.getText().equals(correct)){
-                answerCBtn.setBackgroundColor(Color.parseColor("#5cbd28"))
+                answerCBtn.setBackgroundResource(R.drawable.rounded_right_answer)
                 disableButton()
                 mp.start()
             } else {
-                answerCBtn.setBackgroundColor(Color.parseColor("#c91616"))
+                answerCBtn.setBackgroundResource(R.drawable.rounded_wrong_answer)
                 showRightAnswer();
             }
 
@@ -109,12 +109,13 @@ class MainActivity : AppCompatActivity() {
         val answerDBtn = findViewById<Button>(R.id.AnswerDBtn)
         answerDBtn.setOnClickListener{
             if(answerDBtn.getText().equals(correct)){
-                answerDBtn.setBackgroundColor(Color.parseColor("#5cbd28"))
+                answerDBtn.setBackgroundResource(R.drawable.rounded_right_answer)
                 disableButton()
                 mp.start()
             }
             if(!answerDBtn.getText().equals(correct)){
-                answerDBtn.setBackgroundColor(Color.parseColor("#c91616"))
+                answerDBtn.setBackgroundResource(R.drawable.rounded_wrong_answer)
+               // answerDBtn.setBackgroundColor(Color.parseColor("#c91616"))
                 showRightAnswer();
             }
 
@@ -124,16 +125,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun showRightAnswer(){
         if(AnswerABtn.getText().equals(correct)){
-            findViewById<Button>(R.id.AnswerABtn).setBackgroundColor(Color.parseColor("#5cbd28"))
+            findViewById<Button>(R.id.AnswerABtn).setBackgroundResource(R.drawable.rounded_right_answer)
         }
         if(AnswerBBtn.getText().equals(correct)){
-            findViewById<Button>(R.id.AnswerBBtn).setBackgroundColor(Color.parseColor("#5cbd28"))
+            findViewById<Button>(R.id.AnswerBBtn).setBackgroundResource(R.drawable.rounded_right_answer)
         }
         if(AnswerCBtn.getText().equals(correct)){
-            findViewById<Button>(R.id.AnswerCBtn).setBackgroundColor(Color.parseColor("#5cbd28"))
+            findViewById<Button>(R.id.AnswerCBtn).setBackgroundResource(R.drawable.rounded_right_answer)
         }
         if(AnswerDBtn.getText().equals(correct)){
-            findViewById<Button>(R.id.AnswerDBtn).setBackgroundColor(Color.parseColor("#5cbd28"))
+            findViewById<Button>(R.id.AnswerDBtn).setBackgroundResource(R.drawable.rounded_right_answer)
         }
         disableButton()
     }
@@ -165,13 +166,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun enableButtons(){
         findViewById<Button>(R.id.AnswerABtn).isEnabled = true
-        findViewById<Button>(R.id.AnswerABtn).setBackgroundColor(Color.parseColor("#79A8D3"))
+        findViewById<Button>(R.id.AnswerABtn).setBackgroundResource(R.drawable.rounded_button_corners)
         findViewById<Button>(R.id.AnswerBBtn).isEnabled = true
-        findViewById<Button>(R.id.AnswerBBtn).setBackgroundColor(Color.parseColor("#79A8D3"))
+        findViewById<Button>(R.id.AnswerBBtn).setBackgroundResource(R.drawable.rounded_button_corners)
         findViewById<Button>(R.id.AnswerCBtn).isEnabled = true
-        findViewById<Button>(R.id.AnswerCBtn).setBackgroundColor(Color.parseColor("#79A8D3"))
+        findViewById<Button>(R.id.AnswerCBtn).setBackgroundResource(R.drawable.rounded_button_corners)
         findViewById<Button>(R.id.AnswerDBtn).isEnabled = true
-        findViewById<Button>(R.id.AnswerDBtn).setBackgroundColor(Color.parseColor("#79A8D3"))
+        findViewById<Button>(R.id.AnswerDBtn).setBackgroundResource(R.drawable.rounded_button_corners)
         disableNextButton()
     }
 
@@ -182,7 +183,7 @@ class MainActivity : AppCompatActivity() {
     private fun defineHomeButton(){
         val homebutton = findViewById<ImageButton>(R.id.home)
         homebutton.setOnClickListener{
-            val intent = Intent(this, ChooseModusActivity::class.java)
+            val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
         }
     }
