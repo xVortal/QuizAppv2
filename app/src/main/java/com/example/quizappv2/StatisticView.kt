@@ -23,6 +23,7 @@ class StatisticView : AppCompatActivity() {
         definePassOrNotPassed()
         defineHomeButton()
         setCup()
+        setBossHPAfterQuiz()
     }
 
     private fun defineHomeButton(){
@@ -127,6 +128,9 @@ class StatisticView : AppCompatActivity() {
     }
 
     fun setItemPicture(id : Int){
+        if(id >= 1 && id <= 9){
+            itemsWonText.setText("Item you won:")
+        }
         if(id == 1){
             itemwon.setImageResource(R.drawable.vitality_syringe)
         }
@@ -155,5 +159,11 @@ class StatisticView : AppCompatActivity() {
             itemwon.setImageResource(R.drawable.gold_sword)
         }
         db.setItemCountForUserWithEndOfTest(id)
+    }
+
+    private fun setBossHPAfterQuiz(){
+        var difference = (getRightAnswerCount().toInt()*4) - (getWrongAnswerCount().toInt()*2)
+        var newbosshp = db.getUserName().bosshp - difference
+        db.updateBossHP(newbosshp)
     }
 }
