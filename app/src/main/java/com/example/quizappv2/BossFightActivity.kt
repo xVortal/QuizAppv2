@@ -29,8 +29,8 @@ class BossFightActivity: AppCompatActivity() {
         db = DBHelper(this)
         setBossHP()
         setUserHP()
-        defineNextButton()
         defineHomeButton()
+        defineNextButton()
     }
 
     private fun getHealthFromUser() : Int{
@@ -79,8 +79,14 @@ class BossFightActivity: AppCompatActivity() {
         progressBarUser.setProgress(userHP)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun defineNextButton(){
         val nextStepBtn = findViewById<Button>(R.id.nextStep)
+
+        //muss wieder reingetan werden, blockiert boss
+       /* if(!checkLastBossFightDate()){
+            nextStepBtn.isEnabled = false
+        }*/
         nextStepBtn.setOnClickListener{
             if(getuserHP() > 0 && getbossHP() > 0) {
                 if (getCounterForRounds() % 2 == 0) {
@@ -96,18 +102,42 @@ class BossFightActivity: AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun getLastBossFightDate(): LocalDate{
+        var lastlogin = db.getUserName().last_boss_fight
+        var lldate = LocalDate.parse(lastlogin, DateTimeFormatter.ISO_DATE)
+        println("LastBossFightDate: "+lldate)
+        return lldate
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun checkLastBossFightDate() : Boolean{
+        var currentDate = LocalDate.now()
+        var difference = 0
+        if(db.getUserName().last_boss_fight.equals("null")){
+            return true
+        } else {
+            difference = Period.between(getLastBossFightDate(), currentDate).days
+        }
+        return difference >= 1
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setBossHPAfterDamage(){
         var bossHPAfterDamage = getbossHP() - getDamageFromUser()
         if(bossHPAfterDamage <= 0){
             bossHPAfterDamage = 0
             val nextStepBtn = findViewById<Button>(R.id.nextStep)
             nextStepBtn.isEnabled = false
+            db.updateLastBossFightDate()
+            db.updateBossHP(bossHPAfterDamage)
         }
         setbossHP(bossHPAfterDamage)
         val progressBarBoss = findViewById<ProgressBar>(R.id.bossHP)
         progressBarBoss.setProgress(bossHPAfterDamage)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setUserHPAfterDamage(){
         var userHPAfterDamage = getuserHP() - getDamageFromBoss()
         if(getDamageFromBoss() < getProtectionFromItems()){
@@ -117,6 +147,8 @@ class BossFightActivity: AppCompatActivity() {
             userHPAfterDamage = 0
             val nextStepBtn = findViewById<Button>(R.id.nextStep)
             nextStepBtn.isEnabled = false
+            db.updateLastBossFightDate()
+            db.updateBossHP(getbossHP())
         }
         setuserHP(userHPAfterDamage)
         val progressBarUser = findViewById<ProgressBar>(R.id.userHP)

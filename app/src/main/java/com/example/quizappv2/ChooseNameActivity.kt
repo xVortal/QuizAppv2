@@ -24,14 +24,15 @@ class ChooseNameActivity : AppCompatActivity() {
             //println(db.getUserName().username)
             val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
+        } else {
+
+            db.fillItemTable()
+            db.fillUserItemsTable()
+            db.cleanDatabase()
+
+            db.fillQuestionsTable()
+            defineButton()
         }
-
-        db.fillItemTable()
-        db.fillUserItemsTable()
-        db.cleanDatabase()
-
-        db.fillQuestionsTable()
-        defineButton()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

@@ -22,6 +22,7 @@ class MenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_menu)
         db = DBHelper(this)
         increaseBossHP()
+        db.updateLastLogin()
         db.cleanDatabase()
 
         db.fillQuestionsTable()

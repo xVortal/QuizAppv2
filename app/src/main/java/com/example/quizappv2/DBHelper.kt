@@ -25,7 +25,7 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
         private val COL_ANSWERB = "AnswerB"
         private val COL_ANSWERC = "AnswerC"
         private val COL_ANSWERD = "AnswerD"
-        private val COL_CORRECTANSWER = "CorrectAnswerA"
+        private val COL_CORRECTANSWER = "CorrectAnswer"
         private val COL_DIFFICULTY = "Difficulty"
 
         private val USER_TABLE_NAME = "Users"
@@ -38,6 +38,7 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
         private val COL_DIAMOND = "DIAMOND"
         private val COL_BOSS_HP = "BossHP"
         private val COL_USER_LAST_LOGIN = "LastLogin"
+        private val COL_LAST_BOSS_FIGHT = "LastBossFight"
 
         private val ITEM_TABLE_NAME = "Items"
         private val COL_ITEM_ID = "ItemID"
@@ -62,7 +63,7 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
                 "$COL_ANSWERA TEXT, $COL_ANSWERB TEXT, $COL_ANSWERC TEXT, $COL_ANSWERD TEXT, $COL_CORRECTANSWER TEXT, $COL_DIFFICULTY TEXT)")
         db!!.execSQL(CREATE_TABLE_QUERY)
         val CREATE_TABLE_QUERY_USER: String = ("CREATE TABLE $USER_TABLE_NAME ($COL_USER_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_USER_NAME TEXT," +
-                "$COL_BRONZE INTEGER, $COL_SILVER INTEGER, $COL_GOLD INTEGER, $COL_PLATINUM INTEGER, $COL_DIAMOND INTEGER, $COL_BOSS_HP INTEGER, $COL_USER_LAST_LOGIN TEXT)")
+                "$COL_BRONZE INTEGER, $COL_SILVER INTEGER, $COL_GOLD INTEGER, $COL_PLATINUM INTEGER, $COL_DIAMOND INTEGER, $COL_BOSS_HP INTEGER, $COL_USER_LAST_LOGIN TEXT, $COL_LAST_BOSS_FIGHT TEXT)")
         db!!.execSQL(CREATE_TABLE_QUERY_USER)
         val CREATE_TABLE_QUERY_ITEM: String = ("CREATE TABLE $ITEM_TABLE_NAME ($COL_ITEM_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_ITEM_NAME TEXT," +
                 "$COL_ITEM_EFFEKT TEXT, $COL_ITEM_TIER INTEGER)")
@@ -218,6 +219,8 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
         values.put(COL_DIAMOND, 0)
         values.put(COL_BOSS_HP, 0)
         values.put(COL_USER_LAST_LOGIN, formated)
+        println(formated)
+        values.put(COL_LAST_BOSS_FIGHT, "null")
 
         db.insert(USER_TABLE_NAME, null, values)
     }
@@ -227,10 +230,21 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
         var current = LocalDate.now()
         var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")// HH:mm:ss.SSS")
         var formated = current.format(formatter)
+        println(formated)
         val db = this.writableDatabase
-        val sql = "UPDATE $USER_TABLE_NAME SET $COL_USER_LAST_LOGIN = " + formated + " WHERE $COL_USER_ID = 1"
+        val sql = "UPDATE $USER_TABLE_NAME SET $COL_USER_LAST_LOGIN = '" + formated + "' WHERE $COL_USER_ID = 1"
         db!!.execSQL(sql)
 
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun updateLastBossFightDate(){
+        var current = LocalDate.now()
+        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")// HH:mm:ss.SSS")
+        var formated = current.format(formatter)
+        val db = this.writableDatabase
+        val sql = "UPDATE $USER_TABLE_NAME SET $COL_LAST_BOSS_FIGHT = '" + formated + "' WHERE $COL_USER_ID = 1"
+        db!!.execSQL(sql)
     }
 
     fun updateBossHP(hp : Int){
@@ -274,6 +288,7 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
             user.diamond = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_DIAMOND)))
             user.bosshp = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COL_BOSS_HP)))
             user.last_login = cursor.getString(cursor.getColumnIndex(COL_USER_LAST_LOGIN))
+            user.last_boss_fight = cursor.getString(cursor.getColumnIndex(COL_LAST_BOSS_FIGHT))
         }
         cursor.close()
         return user
@@ -330,12 +345,12 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null
         addToItemList(1,"Vitalitätsspritze","erhöht max leben um 10", 1)
         addToItemList(2,"Vitalitätshelm","erhöht max leben um 20", 2)
         addToItemList(3,"Vitalitätsrüstung","erhöht max leben um 30", 3)
-        addToItemList(4,"Holzschild","reduziere den Schaden, den man erleidet um 1", 1)
-        addToItemList(5,"Schutzhelm","reduziere den Schaden, den man erleidet um 2", 2)
-        addToItemList(6,"Edelrüstung","reduziere den Schaden, den man erleidet um 3", 3)
-        addToItemList(7,"Holzschwert","erhöhe den Schaden um 1", 1)
-        addToItemList(8,"Eisenschwert","erhöhe den Schaden um 2", 2)
-        addToItemList(9,"Goldschwert","erhöhe den Schaden um 3",3)
+        addToItemList(4,"Holzschild","reduziere den Schaden, den man erleidet um 10", 1)
+        addToItemList(5,"Schutzhelm","reduziere den Schaden, den man erleidet um 20", 2)
+        addToItemList(6,"Edelrüstung","reduziere den Schaden, den man erleidet um 30", 3)
+        addToItemList(7,"Holzschwert","erhöhe den Schaden um 2", 1)
+        addToItemList(8,"Eisenschwert","erhöhe den Schaden um 4", 2)
+        addToItemList(9,"Goldschwert","erhöhe den Schaden um 6",3)
     }
 
     fun getItemWithId(id: Int) : Item {

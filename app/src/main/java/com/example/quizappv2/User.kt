@@ -10,10 +10,12 @@ class User {
     var diamond : Int = 0
     var bosshp : Int = 0
     var last_login : String ?= null
+    var last_boss_fight : String ?= null
 
     constructor(){}
 
-    constructor(id: Int, username: String, bronze: Int, silver: Int, gold: Int, platinum: Int, diamond: Int, bosshp: Int, last_login: String)
+    constructor(id: Int, username: String, bronze: Int, silver: Int, gold: Int, platinum: Int,
+                diamond: Int, bosshp: Int, last_login: String, last_boss_fight: String)
     {
         this.id = id
         this.username = username
@@ -24,5 +26,6 @@ class User {
         this.diamond = diamond
         this.bosshp = bosshp
         this.last_login = last_login
+        this.last_boss_fight = last_boss_fight
     }
 }
