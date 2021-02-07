@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main_test.*
@@ -20,6 +21,8 @@ class BossFightActivity: AppCompatActivity() {
     var counter = 0
     var bossHP = 0
     var userHP = 0
+    var maxBossHP = 0
+    var maxUserHP = 0
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -65,28 +68,32 @@ class BossFightActivity: AppCompatActivity() {
 
     private fun setBossHP(){
         val progressBarBoss = findViewById<ProgressBar>(R.id.bossHP)
+        val bosshpText = findViewById<TextView>(R.id.bossShowHP)
         var bossHP = db.getUserName().bosshp
         setbossHP(bossHP)
         progressBarBoss.setMax(bossHP)
         progressBarBoss.setProgress(bossHP)
+        setMaxBossHPForFight(bossHP)
+        bosshpText.setText(""+ bossHP + " / " + bossHP)
     }
 
     private fun setUserHP(){
         val progressBarUser = findViewById<ProgressBar>(R.id.userHP)
+        val userhpText = findViewById<TextView>(R.id.userShowHP)
         var userHP = getHealthFromUser()
         setuserHP(userHP)
         progressBarUser.setMax(userHP)
         progressBarUser.setProgress(userHP)
+        setMaxUserHPForFight(userHP)
+        userhpText.setText(""+ userHP + " / " + userHP)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun defineNextButton(){
         val nextStepBtn = findViewById<Button>(R.id.nextStep)
-
-        //muss wieder reingetan werden, blockiert boss
-       /* if(!checkLastBossFightDate()){
+        if(!checkLastBossFightDate()){
             nextStepBtn.isEnabled = false
-        }*/
+        }
         nextStepBtn.setOnClickListener{
             if(getuserHP() > 0 && getbossHP() > 0) {
                 if (getCounterForRounds() % 2 == 0) {
@@ -134,7 +141,9 @@ class BossFightActivity: AppCompatActivity() {
         }
         setbossHP(bossHPAfterDamage)
         val progressBarBoss = findViewById<ProgressBar>(R.id.bossHP)
+        val bossHPText = findViewById<TextView>(R.id.bossShowHP)
         progressBarBoss.setProgress(bossHPAfterDamage)
+        bossHPText.setText(""+ bossHPAfterDamage + " / " + getMaxBossHPForFight())
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -152,7 +161,9 @@ class BossFightActivity: AppCompatActivity() {
         }
         setuserHP(userHPAfterDamage)
         val progressBarUser = findViewById<ProgressBar>(R.id.userHP)
+        val userHPText = findViewById<TextView>(R.id.userShowHP)
         progressBarUser.setProgress(userHPAfterDamage)
+        userHPText.setText(""+ userHPAfterDamage + " / "+ getMaxUserHPFromFight())
 
     }
 
@@ -179,6 +190,22 @@ class BossFightActivity: AppCompatActivity() {
 
     private fun getbossHP(): Int{
         return this.bossHP
+    }
+
+    private fun setMaxUserHPForFight(max: Int){
+        this.maxUserHP = max
+    }
+
+    private fun getMaxUserHPFromFight():Int{
+        return this.maxUserHP
+    }
+
+    private fun setMaxBossHPForFight(max: Int){
+        this.maxBossHP = max
+    }
+
+    private fun getMaxBossHPForFight():Int{
+        return this.maxBossHP
     }
 
     private fun setuserHP(i: Int){
