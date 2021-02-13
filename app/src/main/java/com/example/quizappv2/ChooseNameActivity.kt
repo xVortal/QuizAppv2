@@ -49,7 +49,6 @@ class ChooseNameActivity : AppCompatActivity() {
         }
     }
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setBossHPforSemesterStart(){
         val stringOfSemesterstart = "2021-01-20"

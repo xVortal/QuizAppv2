@@ -49,6 +49,6 @@ class ItemViewActivity: AppCompatActivity() {
     }
 
     private fun setTextView(){
-        textViewItems.setText(db.getUserName().username + " hier findest du deine errungenen Pokale")
+        textViewItems.setText(db.getUserName().username + " hier findest du deine gewonnen Items")
     }
 }

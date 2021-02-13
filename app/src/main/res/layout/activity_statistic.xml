@@ -15,7 +15,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:gravity="center"
-        android:text="richtig beantwortet:"
+        android:text="Right Answers:"
         app:layout_constraintBottom_toTopOf="@+id/falsch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:gravity="center"
-        android:text="falsch beantwortet:"
+        android:text="Wrong Answers:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/richtig" />

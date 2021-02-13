@@ -95,31 +95,26 @@ class StatisticView : AppCompatActivity() {
         var tier = 0
         if(procentPoints >= 50.0.toFloat() && procentPoints < 70.0.toFloat()){
             cup = "bronze"
-            tier = 1
             imageCup.setImageResource(R.drawable.bronze_cup)
             textCup.setText("Bronze")
         }
         if(procentPoints >= 70.0.toFloat() && procentPoints < 90.0.toFloat()){
             cup = "silver"
-            tier = 1
             imageCup.setImageResource(R.drawable.silver_cup)
             textCup.setText("Silver")
         }
         if(procentPoints >= 90.0.toFloat() && procentPoints < 95.0.toFloat()){
             cup = "gold"
-            tier = 2
             imageCup.setImageResource(R.drawable.gold_cup)
             textCup.setText("Gold")
         }
         if(procentPoints >= 95.0.toFloat() && procentPoints < 100.0.toFloat()){
             cup = "platinum"
-            tier = 2
             imageCup.setImageResource(R.drawable.platinum_cup)
             textCup.setText("Platinum")
         }
         if(procentPoints == 100.0.toFloat()){
             cup = "diamond"
-            tier = 3
             imageCup.setImageResource(R.drawable.diamond_cup)
             textCup.setText("Diamond")
         }
