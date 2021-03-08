@@ -57,7 +57,7 @@ class BossFightActivity: AppCompatActivity() {
         damage = (db.getItemFromUserWithId(8).anzahl * 4) + damage
         damage = (db.getItemFromUserWithId(9).anzahl * 6) + damage
         //Standard damage
-        damage + 4
+        damage = damage + 4
         return damage
     }
 
